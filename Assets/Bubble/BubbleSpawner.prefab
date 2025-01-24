@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 568702be78e465b48bc2a3767019f1c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bubbleSpeed: 1000
+  spawnDelay: 1
+  bubbleSpeed: 2000
   bubbleController: {fileID: 1188948113258195141, guid: 757ce2c04bdb3fd4d8284f5f5ad1593d, type: 3}
-  timeBetweeSpawns: 1
+  linkedSpawners: []
