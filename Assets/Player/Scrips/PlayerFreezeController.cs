@@ -13,7 +13,7 @@ public class PlayerFreezeController : MonoBehaviour
         BubbleController[] freezables = FindObjectsByType<BubbleController>(FindObjectsSortMode.None);
         foreach (BubbleController controller in freezables)
         { 
-            controller.Freeze();
+            controller.TriggerFreezeAction();
         }
     }
 }

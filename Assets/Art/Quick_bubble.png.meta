@@ -382,7 +382,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -2938,7 +2938,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -2947,7 +2947,120 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Quick_bubble_0: -2956400396995410617
+      Quick_bubble_1: 4677991051002546978
+      Quick_bubble_10: 8553099277669261690
+      Quick_bubble_100: -5235089447080634068
+      Quick_bubble_101: -470205160641797655
+      Quick_bubble_102: -6518478422208008362
+      Quick_bubble_103: -2881933739067851988
+      Quick_bubble_104: -8112563128728485700
+      Quick_bubble_105: 5980885571373379552
+      Quick_bubble_106: 4991303203974563976
+      Quick_bubble_107: -8283440251617671681
+      Quick_bubble_108: 3619187142620537098
+      Quick_bubble_109: -5809656997782053134
+      Quick_bubble_11: 3533610613068661654
+      Quick_bubble_110: -791555513871331806
+      Quick_bubble_111: 1814669163629590170
+      Quick_bubble_112: 3256938900995592168
+      Quick_bubble_12: -7078561062379315733
+      Quick_bubble_13: 5150966479638089507
+      Quick_bubble_14: 2471540214866274987
+      Quick_bubble_15: 7740377757073690326
+      Quick_bubble_16: 9117755332975343425
+      Quick_bubble_17: -3147329776527859556
+      Quick_bubble_18: -4506093589826218989
+      Quick_bubble_19: 2198439935110108521
+      Quick_bubble_2: 9146057770217529145
+      Quick_bubble_20: -5866774460504118167
+      Quick_bubble_21: 971177089020262316
+      Quick_bubble_22: 9209907801724513869
+      Quick_bubble_23: 2001814971334404266
+      Quick_bubble_24: 3021088470026734738
+      Quick_bubble_25: -1582610088814119389
+      Quick_bubble_26: -1273266313856010395
+      Quick_bubble_27: -1473390700571705480
+      Quick_bubble_28: 2879822437183096440
+      Quick_bubble_29: 6076185246039570895
+      Quick_bubble_3: 472530378140930794
+      Quick_bubble_30: -6069817373431071380
+      Quick_bubble_31: 3145986493572760725
+      Quick_bubble_32: -8177697699924492638
+      Quick_bubble_33: 5038394716563380220
+      Quick_bubble_34: 7306289389734603074
+      Quick_bubble_35: 161915063145256963
+      Quick_bubble_36: 2166972138561751527
+      Quick_bubble_37: -2301337058197956122
+      Quick_bubble_38: 1744095580657209882
+      Quick_bubble_39: 3775807553218158086
+      Quick_bubble_4: -5647843990649790258
+      Quick_bubble_40: 5342777181090103584
+      Quick_bubble_41: 4639292720913122098
+      Quick_bubble_42: -7266665311959493384
+      Quick_bubble_43: -642135085340267152
+      Quick_bubble_44: 8600228202931670280
+      Quick_bubble_45: 6317438917265322679
+      Quick_bubble_46: -3956545552715419298
+      Quick_bubble_47: 5992934234528323472
+      Quick_bubble_48: -8193963458293521256
+      Quick_bubble_49: 3776537177589042186
+      Quick_bubble_5: 6074309622915907724
+      Quick_bubble_50: -1207284534197079638
+      Quick_bubble_51: -2771681812186902490
+      Quick_bubble_52: -1316595689405451058
+      Quick_bubble_53: -6423794824743715416
+      Quick_bubble_54: -5542847131350557385
+      Quick_bubble_55: 3000790830872936258
+      Quick_bubble_56: -9121640246889456894
+      Quick_bubble_57: -8367453129210330141
+      Quick_bubble_58: 8723779219629064356
+      Quick_bubble_59: -6806394335485442111
+      Quick_bubble_6: 5822134304961456083
+      Quick_bubble_60: 4863195699177901917
+      Quick_bubble_61: 3071904387634462695
+      Quick_bubble_62: 6863448102723116814
+      Quick_bubble_63: 1694409573427346247
+      Quick_bubble_64: 4612730186773303758
+      Quick_bubble_65: -3193326343789635632
+      Quick_bubble_66: -6635707993687432004
+      Quick_bubble_67: 7925962670704325673
+      Quick_bubble_68: 823872649042683496
+      Quick_bubble_69: -3691405921267619385
+      Quick_bubble_7: -742510005253275220
+      Quick_bubble_70: 6815720433865725268
+      Quick_bubble_71: 7580135368208866517
+      Quick_bubble_72: 4993235286194702548
+      Quick_bubble_73: -730889696432266272
+      Quick_bubble_74: -908237489214721455
+      Quick_bubble_75: -1525987360271143026
+      Quick_bubble_76: 1168065383833083791
+      Quick_bubble_77: 591782310801289095
+      Quick_bubble_78: -1292289820688193776
+      Quick_bubble_79: 4087389560739532478
+      Quick_bubble_8: -4893695299895675233
+      Quick_bubble_80: 8668306146060720890
+      Quick_bubble_81: 7231496694122622909
+      Quick_bubble_82: 2130385719148245795
+      Quick_bubble_83: -1943182961358446458
+      Quick_bubble_84: -2367307836395826542
+      Quick_bubble_85: -8297039630421436070
+      Quick_bubble_86: 1039502845414868777
+      Quick_bubble_87: -4066021973142796386
+      Quick_bubble_88: -2143385498489376454
+      Quick_bubble_89: 1001179274968485306
+      Quick_bubble_9: -286847055507386161
+      Quick_bubble_90: 4442965851750970909
+      Quick_bubble_91: 7724984852055442044
+      Quick_bubble_92: 5959716446879954490
+      Quick_bubble_93: 6548589180764368957
+      Quick_bubble_94: 324699237863072333
+      Quick_bubble_95: -536888160075929451
+      Quick_bubble_96: 931699170071320914
+      Quick_bubble_97: 1650328054880830105
+      Quick_bubble_98: 1877979475912530793
+      Quick_bubble_99: 2560097692604446190
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

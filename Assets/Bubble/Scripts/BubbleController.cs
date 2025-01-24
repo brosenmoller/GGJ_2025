@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class BubbleController : MonoBehaviour, IFreezable
+public class BubbleController : MonoBehaviour
 {
     [SerializeField] private float freezeTime;
     [SerializeField] private Color frozenColor;
@@ -22,14 +22,14 @@ public class BubbleController : MonoBehaviour, IFreezable
     {
         this.speed = speed;
         this.direction = direction;
-        spriteHolder.color = normalColor;
 
         rigidBody2D = GetComponent<Rigidbody2D>();
         bubbleCollider = GetComponent<Collider2D>();
-        bubbleCollider.isTrigger = true;
+
+        UnFreeze();
     }
 
-    public void Freeze() 
+    public void TriggerFreezeAction() 
     {
         if (isFrozen)
         {
@@ -37,20 +37,31 @@ public class BubbleController : MonoBehaviour, IFreezable
         } 
         else
         {
-            spriteHolder.color = frozenColor;
-            freezeEndTime = Time.time + freezeTime;
-            rigidBody2D.linearVelocity = Vector2.zero;
-            isFrozen = true;
-            bubbleCollider.isTrigger = false;
+            Freeze();
         }
+    }
+
+    private void Freeze()
+    {
+        isFrozen = true;
+        bubbleCollider.isTrigger = false;
+        freezeEndTime = Time.time + freezeTime;
+        rigidBody2D.linearVelocity = Vector2.zero;
+        spriteHolder.color = frozenColor;
+    }
+
+    private void UnFreeze()
+    {
+        isFrozen = false;
+        spriteHolder.color = normalColor;
+        bubbleCollider.isTrigger = true;
     }
 
     private void Update()
     {
         if (isFrozen) {
             if (Time.time > freezeEndTime) {
-                spriteHolder.color = normalColor;
-                isFrozen = false;
+                UnFreeze();
             }
 
             return; 
