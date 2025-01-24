@@ -25,11 +25,12 @@ public class RaycastController : MonoBehaviour
 
 	public virtual void Awake()
 	{
-		collider = GetComponent<BoxCollider2D>();
-	}
+        collider = GetComponent<BoxCollider2D>();
+    }
 
 	public virtual void Start()
 	{
+		
 	}
 
 	public void UpdateRaycastOrigins()

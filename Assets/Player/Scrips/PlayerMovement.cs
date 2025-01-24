@@ -45,11 +45,12 @@ public class PlayerMovement : MonoBehaviour
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
         raycastController = GetComponent<RaycastController>();
-        raycastController.UpdateRaycastOrigins();
-        raycastController.CalculateRaySpacing();
     }
 
     private void Start() {
+        raycastController.UpdateRaycastOrigins();
+        raycastController.CalculateRaySpacing();
+
         isGrounded = GroundCheck();
         rb.gravityScale = rigidBodyGravityScale;
         currentJumpVelocity = maxJumpVelocity;
