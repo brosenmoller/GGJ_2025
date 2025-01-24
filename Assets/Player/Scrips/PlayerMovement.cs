@@ -39,17 +39,9 @@ public class PlayerMovement : MonoBehaviour
     private float movementX;
 
     private Rigidbody2D rb;
-    private PlayerControls controls;
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
-    }
-
-    private void OnEnable() {
-        if (controls == null) {
-            controls = new PlayerControls();
-        }
-        controls.Gameplay.Enable();
     }
 
     private void Start() {
@@ -60,10 +52,10 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void SetupControls() {
-        controls.Gameplay.HorizontalMovement.performed += movement_ctx => UpdateMovementDirection((int)movement_ctx.ReadValue<float>());
-        controls.Gameplay.HorizontalMovement.canceled += _ => UpdateMovementDirection(0);
-        controls.Gameplay.Jump.started += _ => InitiateJump();
-        controls.Gameplay.Jump.canceled += _ => CutJumpVelocity();
+        InputManager.Instance.Controls.Gameplay.HorizontalMovement.performed += movement_ctx => UpdateMovementDirection((int)movement_ctx.ReadValue<float>());
+        InputManager.Instance.Controls.Gameplay.HorizontalMovement.canceled += _ => UpdateMovementDirection(0);
+        InputManager.Instance.Controls.Gameplay.Jump.started += _ => InitiateJump();
+        InputManager.Instance.Controls.Gameplay.Jump.canceled += _ => CutJumpVelocity();
     }
 
     private void Update() {
