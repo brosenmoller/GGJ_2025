@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(RaycastController))]
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Horizontal Movement Settings")]
@@ -28,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Transform spriteHolder;
+    private RaycastController raycastController;
 
     private bool isGrounded;
     private bool wasGrounded;
@@ -42,6 +44,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
+        raycastController = GetComponent<RaycastController>();
+        raycastController.UpdateRaycastOrigins();
+        raycastController.CalculateRaySpacing();
     }
 
     private void Start() {
@@ -76,6 +81,8 @@ public class PlayerMovement : MonoBehaviour
                 //Posible Land animation
             }
         }
+        StepBump();
+        JumpBumb();
     }
 
     private void InitiateJump() {
@@ -135,9 +142,23 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public bool GroundCheck() {
-        if (Physics2D.Raycast((transform.position + colliderWidth) + colliderOffset, Vector2.down, groundDistance, groundLayer) ||
-            Physics2D.Raycast((transform.position - colliderWidth) + colliderOffset, Vector2.down, groundDistance, groundLayer)) return true;
-        else return false;
+
+        raycastController.UpdateRaycastOrigins();
+        float rayLength = RaycastController.skinWidth * 3f;
+        for (int i = 0; i < raycastController.verticalRayCount; i++)
+        {
+            Vector2 rayOrigin = raycastController.raycastOrigins.bottomLeft;
+            rayOrigin += Vector2.right * (raycastController.verticalRaySpacing * i);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, rayLength, raycastController.collisionMask);
+
+            Debug.DrawRay(rayOrigin, Vector2.down * rayLength, Color.red);
+            if (hit && hit.collider.gameObject != gameObject)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     IEnumerator JumpSqueeze(float xSqueeze, float ySqueeze, float seconds) {
@@ -163,9 +184,109 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected() {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawRay((transform.position + colliderWidth) + colliderOffset, Vector2.down * groundDistance);
-        Gizmos.DrawRay((transform.position - colliderWidth) + colliderOffset, Vector2.down * groundDistance);
+
+    private void StepBump()
+    {
+        if(movementX < 0)
+            StepBumpLeft();
+        if(movementX > 0)
+            StepBumpRight();
     }
+
+    private void StepBumpLeft()
+    {
+        float rayLength = RaycastController.skinWidth * 5f;
+        Vector2 rayOrigin = raycastController.raycastOrigins.bottomLeft;
+
+        Debug.DrawRay(rayOrigin, Vector2.left * rayLength, Color.red);
+        if (!Physics2D.Raycast(rayOrigin, Vector2.left, rayLength, raycastController.collisionMask))
+        {
+            return;
+        }
+        rayOrigin += Vector2.up * 0.03f;
+        Debug.DrawRay(rayOrigin, Vector2.left * rayLength, Color.red);
+        if (Physics2D.Raycast(rayOrigin, Vector2.left, rayLength, raycastController.collisionMask))
+        {
+            return;
+        }
+
+        rb.position += Vector2.up * rayLength;
+        rb.position += Vector2.left * rayLength;
+    }
+    private void StepBumpRight()
+    {
+        float rayLength = RaycastController.skinWidth * 5f;
+        Vector2 rayOrigin = raycastController.raycastOrigins.bottomRight;
+
+        Debug.DrawRay(rayOrigin, Vector2.right * rayLength, Color.red);
+        if (!Physics2D.Raycast(rayOrigin, Vector2.right, rayLength, raycastController.collisionMask))
+        {
+            return;
+        }
+        rayOrigin += Vector2.up * 0.03f;
+        Debug.DrawRay(rayOrigin, Vector2.right * rayLength, Color.red);
+        if (Physics2D.Raycast(rayOrigin, Vector2.right, rayLength, raycastController.collisionMask))
+        {
+            return;
+        }
+
+        rb.position += Vector2.up * rayLength;
+        rb.position += Vector2.right * rayLength;
+    }
+
+
+    private void JumpBumb()
+    {
+        /*if (rb.linearVelocityY > 0)
+        {*/
+            JumpBumpLeft();
+            JumpBumpRight();
+        //}
+    }
+
+    private void JumpBumpLeft()
+    {
+        float rayLength = RaycastController.skinWidth * 10f;
+        Vector2 rayOrigin = raycastController.raycastOrigins.topLeft + Vector2.left * RaycastController.skinWidth;
+
+        Debug.DrawRay(rayOrigin, Vector2.up * rayLength, Color.red);
+        if (!Physics2D.Raycast(rayOrigin, Vector2.up, rayLength, raycastController.collisionMask))
+        {
+            return;
+        }
+
+        for (int i = 2; i < 7; i++)
+        {
+            rayOrigin += Vector2.right * 0.05f;
+            Debug.DrawRay(rayOrigin, Vector2.up * rayLength, Color.red);
+            if (!Physics2D.Raycast(rayOrigin, Vector2.up, rayLength, raycastController.collisionMask))
+            {
+                rb.position += Vector2.right * 0.05f * i;
+                return;
+            }
+        }
+    }
+    private void JumpBumpRight()
+    {
+        float rayLength = RaycastController.skinWidth * 10f;
+        Vector2 rayOrigin = raycastController.raycastOrigins.topRight + Vector2.right * RaycastController.skinWidth;
+
+        Debug.DrawRay(rayOrigin, Vector2.up * rayLength, Color.red);
+        if (!Physics2D.Raycast(rayOrigin, Vector2.up, rayLength, raycastController.collisionMask))
+        {
+            return;
+        }
+
+        for(int i = 2; i < 7; i++)
+        {
+            rayOrigin += Vector2.left * 0.05f;
+            Debug.DrawRay(rayOrigin, Vector2.up * rayLength, Color.red);
+            if (!Physics2D.Raycast(rayOrigin, Vector2.up, rayLength, raycastController.collisionMask))
+            {
+                rb.position += Vector2.left * 0.05f * i;
+                return;
+            }
+        }
+    }
+
 }
