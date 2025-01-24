@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1188948113258195141}
   - component: {fileID: 5920420154141819991}
   - component: {fileID: 6903916724284022418}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,6 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1c6810f814768c41acaf958205f5a9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  freezeTime: 5
+  frozenColor: {r: 0, g: 0.18928123, b: 1, a: 1}
+  normalColor: {r: 0, g: 0.84729433, b: 1, a: 1}
+  spriteHolder: {fileID: 7264495478516561857}
 --- !u!58 &5920420154141819991
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -91,7 +95,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 741980531699589160}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -120,7 +124,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6150186827604604525}
   - component: {fileID: 7264495478516561857}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SpriteHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
