@@ -3,15 +3,17 @@ using UnityEngine.InputSystem;
 
 public class PlayerFreezeController : MonoBehaviour
 {
-    private void Start() {
+    private void Start()
+    {
         InputManager.Instance.Controls.Gameplay.Freeze.performed += PlayerFreezeAction;
     }
 
-    public void PlayerFreezeAction(InputAction.CallbackContext callbackContext) {
-        Debug.Log("Freeze");
+    public void PlayerFreezeAction(InputAction.CallbackContext callbackContext)
+    {
         BubbleController[] freezables = FindObjectsByType<BubbleController>(FindObjectsSortMode.None);
-        foreach (BubbleController controller in freezables) { 
-            controller.Freeze();
+        foreach (BubbleController controller in freezables)
+        { 
+            controller.TriggerFreezeAction();
         }
     }
 }
