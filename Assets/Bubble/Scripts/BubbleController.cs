@@ -1,8 +1,10 @@
 using System;
 using UnityEngine;
+using UnityEngine.Splines;
 
 public class BubbleController : MonoBehaviour
 {
+    [Header("Bubble Settings")]
     [SerializeField] private float freezeTime;
     [SerializeField] private Color frozenColor;
     [SerializeField] private Color normalColor;
@@ -10,18 +12,22 @@ public class BubbleController : MonoBehaviour
 
     public event Action OnDestroyed;
 
+    private Spline spline;
+
+    private Rigidbody2D rigidBody2D;
+    private Collider2D bubbleCollider;
+    
     private float speed;
     private Vector2 direction;
-    private Rigidbody2D rigidBody2D;
     private bool isFrozen;
-    private Collider2D bubbleCollider;
 
     private float freezeEndTime;
 
-    public void Setup(float speed, Vector2 direction) 
+    public void Setup(float speed, Vector2 direction, Spline spline) 
     {
         this.speed = speed;
         this.direction = direction;
+        this.spline = spline;
 
         rigidBody2D = GetComponent<Rigidbody2D>();
         bubbleCollider = GetComponent<Collider2D>();

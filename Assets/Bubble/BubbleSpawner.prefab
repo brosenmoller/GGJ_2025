@@ -161,3 +161,4 @@ MonoBehaviour:
   bubbleSpeed: 2000
   bubbleController: {fileID: 1188948113258195141, guid: 757ce2c04bdb3fd4d8284f5f5ad1593d, type: 3}
   linkedSpawners: []
+  spline: {fileID: 121650439949310534}
