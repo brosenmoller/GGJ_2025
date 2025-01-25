@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class TimeScaleController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
 #if UNITY_EDITOR
         InputManager.Instance.Controls.Debug.MinusTimeScale.started += _ => {

@@ -1,14 +1,12 @@
 using UnityEngine;
-using System.Collections;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class RaycastController : MonoBehaviour
 {
-
 	public LayerMask collisionMask;
 
 	public const float skinWidth = .015f;
-	const float dstBetweenRays = .25f;
+	private const float dstBetweenRays = .25f;
 	[HideInInspector]
 	public int horizontalRayCount;
 	[HideInInspector]
@@ -27,11 +25,6 @@ public class RaycastController : MonoBehaviour
 	{
         collider = GetComponent<BoxCollider2D>();
     }
-
-	public virtual void Start()
-	{
-		
-	}
 
 	public void UpdateRaycastOrigins()
 	{

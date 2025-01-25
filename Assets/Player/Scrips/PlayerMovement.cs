@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Vertical Movement Settings")]
     [SerializeField] private float maxJumpVelocity = 18f;
-    [SerializeField, Range(0, 1)] float jumpCutOff = 0.5f;
+    [SerializeField, Range(0, 1)] private float jumpCutOff = 0.5f;
     [SerializeField] private float rigidBodyGravityScale = 4f;
     [SerializeField] private float maxFallSpeed = -25;
     [SerializeField] private float fallMultiplier = default;
@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Transform spriteHolder;
+
     public RaycastController raycastController { get; private set; }
 
     private bool isGrounded;
@@ -41,9 +42,6 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private PlayerParticleManager particleManager;
-
-
-    
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
@@ -243,6 +241,7 @@ public class PlayerMovement : MonoBehaviour
         rb.position += Vector2.up * rayLength;
         rb.position += Vector2.left * rayLength;
     }
+
     private void StepBumpRight()
     {
         float rayLength = RaycastController.skinWidth * 5f;
@@ -296,6 +295,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
     private void JumpBumpRight()
     {
         float rayLength = RaycastController.skinWidth * 10f;
@@ -341,6 +341,7 @@ public class PlayerMovement : MonoBehaviour
         v.y = Mathf.Clamp(v.y, maxFallSpeed, 18);
         rb.linearVelocity = v;
     }
+
     private bool SameDirection(float a, float b)
     {
         return a * b >= 0.0f;

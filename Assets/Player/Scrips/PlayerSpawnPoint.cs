@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using Unity.Cinemachine;
+
 public class PlayerSpawnPoint : MonoBehaviour
 {
     [SerializeField]
@@ -9,6 +10,7 @@ public class PlayerSpawnPoint : MonoBehaviour
     private float spawnDurration;
     [SerializeField]
     private ParticleSystem burstParticle;
+
     private IEnumerator Start()
     {
         PlayerMovement player = FindAnyObjectByType<PlayerMovement>();
@@ -39,10 +41,4 @@ public class PlayerSpawnPoint : MonoBehaviour
         player.raycastController.collider.enabled = true;
         cinemachineCamera.Target.TrackingTarget = player.transform;
     }
-
-
-
-    
-
-
 }

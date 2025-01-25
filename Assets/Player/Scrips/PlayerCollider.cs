@@ -25,7 +25,6 @@ public class PlayerCollider : MonoBehaviour
         spawnPoint = FindFirstObjectByType<PlayerSpawnPoint>();
     }
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("DeathTrigger"))
@@ -33,7 +32,7 @@ public class PlayerCollider : MonoBehaviour
             BubbleController[] bubbles = FindObjectsByType<BubbleController>(FindObjectsSortMode.None);
             foreach(BubbleController b in bubbles)
             {
-                b.pop();
+                b.Pop();
             }
             playerMovement.enabled = false;
             playerMovement.raycastController.collider.enabled = false;
