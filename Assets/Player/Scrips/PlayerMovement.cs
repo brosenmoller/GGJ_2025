@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Transform spriteHolder;
-    private RaycastController raycastController;
+    public RaycastController raycastController { get; private set; }
 
     private bool isGrounded;
     private bool wasGrounded;

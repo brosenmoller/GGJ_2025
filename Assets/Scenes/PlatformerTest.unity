@@ -119,6 +119,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &166963019
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 166963020}
+  - component: {fileID: 166963021}
+  m_Layer: 0
+  m_Name: PlayerSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &166963020
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166963019}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &166963021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166963019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 838533d8db10e6d4a9c814f6a6753d44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &362637624 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7337902992234252119, guid: b92471d05a7fc6f4d824a4355fc9bc11, type: 3}
@@ -1523,7 +1567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: linkedSpawners.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: 'linkedSpawners.Array.data[0]'
@@ -1907,7 +1951,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: linkedSpawners.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: 'linkedSpawners.Array.data[0]'
@@ -1923,11 +1967,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: config.<SplineCurve>k__BackingField.m_Curve.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: config.<SplineCurve>k__BackingField.m_Curve.Array.data[1].time
-      value: 0.30049568
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: config.<SplineCurve>k__BackingField.m_Curve.Array.data[2].time
@@ -1935,7 +1979,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: config.<SplineCurve>k__BackingField.m_Curve.Array.data[1].value
-      value: 0.6404699
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: config.<SplineCurve>k__BackingField.m_Curve.Array.data[2].value
@@ -1943,11 +1987,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: config.<SplineCurve>k__BackingField.m_Curve.Array.data[0].inSlope
-      value: 2.1313782
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: config.<SplineCurve>k__BackingField.m_Curve.Array.data[1].inSlope
-      value: 0.59186316
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: config.<SplineCurve>k__BackingField.m_Curve.Array.data[2].inSlope
@@ -1955,15 +1999,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: config.<SplineCurve>k__BackingField.m_Curve.Array.data[0].outSlope
-      value: 2.1313782
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: config.<SplineCurve>k__BackingField.m_Curve.Array.data[1].inWeight
-      value: 0.31116545
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: config.<SplineCurve>k__BackingField.m_Curve.Array.data[1].outSlope
-      value: 0.59186316
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: config.<SplineCurve>k__BackingField.m_Curve.Array.data[2].inWeight
@@ -1975,11 +2019,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: config.<SplineCurve>k__BackingField.m_Curve.Array.data[0].outWeight
-      value: 0.33333334
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: config.<SplineCurve>k__BackingField.m_Curve.Array.data[1].outWeight
-      value: 0.33333334
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
+      propertyPath: config.<SplineCurve>k__BackingField.m_Curve.Array.data[0].tangentMode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: config.<SplineCurve>k__BackingField.m_Curve.Array.data[1].tangentMode
@@ -2045,10 +2093,6 @@ PrefabInstance:
     - target: {fileID: 8464303518248334755, guid: 2120032eb2e952a44b72e86cde851e07, type: 3}
       propertyPath: m_Name
       value: DeathTrigger
-      objectReference: {fileID: 0}
-    - target: {fileID: 8464303518248334755, guid: 2120032eb2e952a44b72e86cde851e07, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2125,3 +2169,4 @@ SceneRoots:
   - {fileID: 305638739318561149}
   - {fileID: 5803421294656631265}
   - {fileID: 547438599}
+  - {fileID: 166963020}
