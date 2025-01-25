@@ -4,6 +4,15 @@ using UnityEngine.Splines;
 
 public class BubbleController : MonoBehaviour
 {
+    [Serializable]
+    public class Config
+    {
+        [field: SerializeField] public float SplineDuration { get; private set; }
+        [field: SerializeField] public SplineContainer Spline { get; private set; }
+        [field: SerializeField] public bool IsSplineLoopingEnabled { get; private set; }
+        [field: SerializeField] public AnimationCurve SplineCurve { get; private set; }
+    }
+
     [Header("Bubble Settings")]
     [SerializeField] private float freezeTime;
     [SerializeField] private Color frozenColor;
@@ -15,27 +24,21 @@ public class BubbleController : MonoBehaviour
     private Rigidbody2D rigidBody2D;
     private Collider2D bubbleCollider;
     
-    private SplineContainer spline;
-    private float speed;
-    private bool isSplineLoopingEnabled;
-
     private bool isFrozen;
 
     private float freezeEndTime;
 
     private float splineTimeValue;
-    private float splineLength;
     private bool isDirectionForward;
 
-    public void Setup(float speed, SplineContainer spline, bool isSplineLoopingEnabled = false) 
+    private Config config;
+
+    public void Setup(Config config) 
     {
-        this.speed = speed;
-        this.spline = spline;
-        this.isSplineLoopingEnabled = isSplineLoopingEnabled;
+        this.config = config;
 
         rigidBody2D = GetComponent<Rigidbody2D>();
         bubbleCollider = GetComponent<Collider2D>();
-        splineLength = spline.CalculateLength();
         isDirectionForward = true;
 
         UnFreeze();
@@ -79,13 +82,13 @@ public class BubbleController : MonoBehaviour
             return; 
         }
 
-        float moveDifference = speed * Time.deltaTime / splineLength;
+        float moveDifference = Time.deltaTime / config.SplineDuration;
         if (isDirectionForward) { splineTimeValue += moveDifference; }
         else { splineTimeValue -= moveDifference; }
 
         if (splineTimeValue > 1)
         {
-            if (isSplineLoopingEnabled)
+            if (config.IsSplineLoopingEnabled)
             {
                 isDirectionForward = !isDirectionForward;
             }
@@ -98,7 +101,8 @@ public class BubbleController : MonoBehaviour
             isDirectionForward = !isDirectionForward;
         }
 
-        Vector3 currentPosition = spline.EvaluatePosition(splineTimeValue);
+        float splineDistance = config.SplineCurve.Evaluate(splineTimeValue);
+        Vector3 currentPosition = config.Spline.EvaluatePosition(splineDistance);
         rigidBody2D.MovePosition(currentPosition);
     }
 

@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Splines;
 
 public class BubbleSpawner : MonoBehaviour 
 {
     [Header("General")]
     [SerializeField] private float spawnDelay;
-    [SerializeField] private float bubbleSpeed;
     [SerializeField] private BubbleController bubbleController;
     [SerializeField] private List<BubbleSpawner> linkedSpawners = new();
-    [SerializeField] private SplineContainer spline;
-    [SerializeField] private bool splineLooping;
+
+    [Header("Spline")]
+    [SerializeField] private BubbleController.Config config;
 
     public bool IsBubbleDestroyed { get; private set; } = true;
     private BubbleController spawnedBubble;
@@ -42,13 +41,8 @@ public class BubbleSpawner : MonoBehaviour
     {
         IsBubbleDestroyed = false;
         spawnedBubble = Instantiate(bubbleController, transform.position, Quaternion.identity);
-        spawnedBubble.Setup(bubbleSpeed, spline, splineLooping);
+        spawnedBubble.Setup(config);
         spawnedBubble.OnDestroyed += DestroyBubble;
     }
 
-    private void OnDrawGizmos() 
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(transform.position, transform.position + transform.forward * (bubbleSpeed * Time.deltaTime * 0.01f));
-    }
 }
