@@ -15,9 +15,7 @@ public class PlayerCollider : MonoBehaviour
     private AnimationCurve respawnCurve;
     [SerializeField]
     private float respawnDurration;
-    [SerializeField]
-    private GameObject spawnbubble;
-    private float oldGravityScale;
+    public GameObject spawnbubble;
 
 
     private void Awake()
@@ -32,11 +30,15 @@ public class PlayerCollider : MonoBehaviour
     {
         if (collision.CompareTag("DeathTrigger"))
         {
+            BubbleController[] bubbles = FindObjectsByType<BubbleController>(FindObjectsSortMode.None);
+            foreach(BubbleController b in bubbles)
+            {
+                b.pop();
+            }
             playerMovement.enabled = false;
             playerMovement.raycastController.collider.enabled = false;
             rigidbody2D.linearVelocity = Vector2.zero;
-            oldGravityScale = rigidbody2D.gravityScale;
-            rigidbody2D.gravityScale = 0;
+            rigidbody2D.simulated = false;
             deathParticle.Play();
             StartCoroutine(Respawn());
         }
@@ -48,7 +50,7 @@ public class PlayerCollider : MonoBehaviour
         spawnbubble.SetActive(true);
         Vector2 startPostion = rigidbody2D.position;
         float time = 0;
-        while (rigidbody2D.position != spawnPoint.transform.position2D())
+        while (transform.position2D() != spawnPoint.transform.position2D())
         {
             time += Time.deltaTime;
             transform.position = Vector2.Lerp(startPostion, spawnPoint.transform.position2D(), respawnCurve.Evaluate(time/respawnDurration));
@@ -60,7 +62,7 @@ public class PlayerCollider : MonoBehaviour
         }
         spawnbubble.SetActive(false);
         Instantiate(burstParticle, transform.position, Quaternion.identity);
-        rigidbody2D.gravityScale = oldGravityScale;
+        rigidbody2D.simulated = true;
         playerMovement.enabled = true;
         playerMovement.raycastController.collider.enabled = true;
     }

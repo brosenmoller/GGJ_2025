@@ -45,4 +45,9 @@ public class BubbleSpawner : MonoBehaviour
         spawnedBubble.OnDestroyed += DestroyBubble;
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, 0.6f);
+    }
 }

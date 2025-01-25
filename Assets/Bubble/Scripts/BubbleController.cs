@@ -148,4 +148,8 @@ public class BubbleController : MonoBehaviour
     {
         OnDestroyed -= spawnBurstParticle;
     }
+    public void pop()
+    {
+        OnDestroyed?.Invoke();
+    }
 }
