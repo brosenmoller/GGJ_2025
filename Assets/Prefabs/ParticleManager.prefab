@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4457972879219895653}
-  - component: {fileID: 1679750426516241358}
+  - component: {fileID: 3093223048339496282}
   m_Layer: 0
   m_Name: ParticleManager
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1679750426516241358
+--- !u!114 &3093223048339496282
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,14 +41,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 3889824076939143097}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82457293be9d2354a820c2ae8c70dd30, type: 3}
+  m_Script: {fileID: 11500000, guid: bdbf04fb67e7db34ba213a611640ba83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingCount: 2
   ParticleDictornary:
     pairs:
-    - key: BubbleBurst
-      value: {fileID: 6967334981185576765, guid: de44dc27ed071cf4b96444b2280d5477, type: 3}
-    - key: Freeze
-      value: {fileID: 5383360549126063211, guid: adbe24a98d06a394e9c875e8ae51606d, type: 3}
-    - key: FreezeEnd
-      value: {fileID: 5383360549126063211, guid: 1e24c93af9777ce43af78428fabed564, type: 3}
+    - key: 0
+      value: {fileID: 9169554937257751649, guid: de44dc27ed071cf4b96444b2280d5477, type: 3}
+    - key: 1
+      value: {fileID: 3257741676145919930, guid: adbe24a98d06a394e9c875e8ae51606d, type: 3}
+    - key: 2
+      value: {fileID: 9178923833240853098, guid: 1e24c93af9777ce43af78428fabed564, type: 3}
+    - key: 3
+      value: {fileID: 3595168450095026314, guid: 7c349250860372044a8f405d03b0554e, type: 3}

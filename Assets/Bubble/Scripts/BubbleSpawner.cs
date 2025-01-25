@@ -16,8 +16,9 @@ public class BubbleSpawner : MonoBehaviour
     public bool IsBubbleDestroyed { get; private set; } = true;
     private BubbleController spawnedBubble;
 
-    private void Awake() 
+    private IEnumerator Start() 
     {
+        yield return ParticleManager.WaitUntillExists;
         StartCoroutine(SpawnRoutine());
     }
 

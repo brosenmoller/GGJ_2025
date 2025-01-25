@@ -45,7 +45,7 @@ public class BubbleController : MonoBehaviour
         rigidBody2D = GetComponent<Rigidbody2D>();
         bubbleCollider = GetComponent<Collider2D>();
         isDirectionForward = true;
-        OnDestroyed += spawnBurstParticle;
+        OnDestroyed += SpawnBurstParticle;
         UnFreeze();
     }
 
@@ -64,7 +64,7 @@ public class BubbleController : MonoBehaviour
 
     private void Freeze()
     {
-        ParticleManager.Instance.PlayeParticleAt("Freeze", transform.position);
+        ParticleManager.Instance.PlayParticleAt(ParticleManager.ParticleType.Freeze, transform.position);
         isFrozen = true;
         bubbleCollider.isTrigger = false;
         freezeEndTime = Time.time + freezeTime;
@@ -85,7 +85,7 @@ public class BubbleController : MonoBehaviour
         if (isFrozen) {
             if(Time.time > freezeEndTime - 1 && !spawnedUnfreezeParticle)
             {
-                ParticleManager.Instance.PlayeParticleAt("FreezeEnd", transform.position);
+                ParticleManager.Instance.PlayParticleAt(ParticleManager.ParticleType.FreezeEnd, transform.position);
                 spawnedUnfreezeParticle = true;
             }
             if (Time.time > freezeEndTime) {
@@ -132,19 +132,18 @@ public class BubbleController : MonoBehaviour
         OnDestroyed?.Invoke();
     }
 
-    private void spawnBurstParticle()
+    private void SpawnBurstParticle()
     {
-        ParticleManager.Instance.PlayeParticleAt("BubbleBurst", transform.position);
+        ParticleManager.Instance.PlayParticleAt(ParticleManager.ParticleType.BubbleBurst, transform.position);
     }
 
     private void OnDisable()
     {
-        OnDestroyed -= spawnBurstParticle;
+        OnDestroyed -= SpawnBurstParticle;
     }
 
     public void Pop()
     {
         OnDestroyed?.Invoke();
     }
-
 }

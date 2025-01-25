@@ -17,12 +17,16 @@ public class PlayerSpawnPoint : MonoBehaviour
     private Rigidbody2D rigidBody2D;
     private CinemachineCamera cinemachineCamera;
 
-    private void Start()
+    private void Awake()
     {
         player = FindAnyObjectByType<PlayerMovement>();
         rigidBody2D = player.GetComponent<Rigidbody2D>();
         cinemachineCamera = FindFirstObjectByType<CinemachineCamera>();
+    }
 
+    private IEnumerator Start()
+    {
+        yield return ParticleManager.WaitUntillExists;
         BubbleAndMovePlayer(transform.position2D(), spawnCurve);
     }
 
@@ -75,7 +79,7 @@ public class PlayerSpawnPoint : MonoBehaviour
     private void UnBubblePlayer()
     {
         spawnBubble.SetActive(false);
-        ParticleManager.Instance.PlayeParticleAt("BubbleBurst", transform.position);
+        ParticleManager.Instance.PlayParticleAt(ParticleManager.ParticleType.BubbleBurst, transform.position);
         rigidBody2D.simulated = true;
         player.enabled = true;
         player.raycastController.collider.enabled = true;
