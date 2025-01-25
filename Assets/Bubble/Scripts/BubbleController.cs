@@ -47,7 +47,7 @@ public class BubbleController : MonoBehaviour
         rigidBody2D = GetComponent<Rigidbody2D>();
         bubbleCollider = GetComponent<Collider2D>();
         isDirectionForward = true;
-        UnFreeze();
+        UnFreeze(false);
         AudioManager.Instance.PlayOneShotRandomPitchFromDictonary("BubbleSpawn", transform.position);
     }
 
@@ -73,15 +73,16 @@ public class BubbleController : MonoBehaviour
         bubbleCollider.isTrigger = false;
         freezeEndTime = Time.time + freezeTime;
         rigidBody2D.linearVelocity = Vector2.zero;
-        //spriteHolder.color = frozenColor;
         spawnedUnfreezeParticle = false;
     }
 
-    private void UnFreeze()
+    private void UnFreeze(bool doAnimation = true)
     {
-        animator.CrossFadeInFixedTime("UnFreeze", 0);
+        if (doAnimation)
+        {
+            animator.CrossFadeInFixedTime("UnFreeze", 0);
+        }
         isFrozen = false;
-        //spriteHolder.color = normalColor;
         bubbleCollider.isTrigger = true;
     }
 

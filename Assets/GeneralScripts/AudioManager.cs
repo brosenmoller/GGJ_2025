@@ -10,13 +10,10 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }
     public static bool Exists { get { return Instance != null; } }
 
-    public static WaitUntil waitUntil = new WaitUntil(() => Exists);
-
-    AudioSource source;
+    public static WaitUntil waitUntil = new(() => Exists);
 
     private void Awake()
     {
-        source = GetComponent<AudioSource>();
         Instance = this;
     }
 
@@ -50,8 +47,6 @@ public class AudioManager : MonoBehaviour
         Destroy(tempGO, clip.length);
         return tempGO;
     }
-
-
 
     private void OnDestroy()
     {
