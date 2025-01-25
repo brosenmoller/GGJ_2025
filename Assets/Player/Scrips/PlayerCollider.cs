@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -21,10 +22,12 @@ public class PlayerCollider : MonoBehaviour
     private Transform destinationTransform;
 
     public GameObject spawnbubble;
+    private CinemachineCamera cinemachineCamera;
 
     private void Awake()
     {
         spawnPoint = FindFirstObjectByType<PlayerSpawnPoint>();
+        cinemachineCamera = FindFirstObjectByType<CinemachineCamera>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -42,6 +45,7 @@ public class PlayerCollider : MonoBehaviour
         } 
         else if (collision.CompareTag("LevelEnd"))
         {
+            cinemachineCamera.Target.TrackingTarget = collision.transform;
             spawnPoint.BubbleAndMovePlayer(destinationTransform.position2D(), respawnCurve, HandleLevelEnd);
         }
     }
