@@ -64,6 +64,7 @@ public class BubbleController : MonoBehaviour
 
     private void Freeze()
     {
+        AudioManager.Instance.PlayOneShotRandomPitchFromDictonary("Freeze", transform.position,true);
         ParticleManager.Instance.PlayParticleAt("Freeze", transform.position);
         isFrozen = true;
         bubbleCollider.isTrigger = false;

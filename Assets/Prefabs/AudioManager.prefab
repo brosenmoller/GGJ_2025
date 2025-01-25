@@ -148,3 +148,7 @@ MonoBehaviour:
       value: {fileID: 8300000, guid: 90566842671e86747847650231b9bd4e, type: 3}
     - key: BubbleDeath
       value: {fileID: 8300000, guid: 5c3e9f43df50b314bbd16bcdcf4bba94, type: 3}
+    - key: Freeze
+      value: {fileID: 8300000, guid: b3ad5aeb574cbbe41b0c5988319fef92, type: 3}
+    - key: FreezeAbility
+      value: {fileID: 8300000, guid: e56d9a84076414947b255ce3b8e53d71, type: 3}
