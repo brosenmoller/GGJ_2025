@@ -51,6 +51,9 @@ MonoBehaviour:
   frozenColor: {r: 0, g: 0.18928123, b: 1, a: 1}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   spriteHolder: {fileID: 3536035749961346978}
+  popLayer:
+    serializedVersion: 2
+    m_Bits: 9
   freezeable: 1
   isBouncy: 0
 --- !u!50 &6903916724284022418

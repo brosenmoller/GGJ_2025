@@ -92,5 +92,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  spawnDurration: 2
+  spawnDurration: 1
   spawnBubble: {fileID: 0}
