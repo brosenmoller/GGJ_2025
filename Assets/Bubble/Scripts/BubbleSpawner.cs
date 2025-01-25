@@ -22,6 +22,8 @@ public class BubbleSpawner : MonoBehaviour
 
     private IEnumerator SpawnRoutine()
     {
+        if (spawnElements.Count <= 0) { yield break; }
+
         bool areAllBubblesDestroyed = true;
         while (true)
         {
