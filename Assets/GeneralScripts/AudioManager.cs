@@ -10,13 +10,10 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }
     public static bool Exists { get { return Instance != null; } }
 
-    public static WaitUntil waitUntil = new WaitUntil(() => Exists);
-
-    AudioSource source;
+    public static WaitUntil waitUntil = new(() => Exists);
 
     private void Awake()
     {
-        source = GetComponent<AudioSource>();
         Instance = this;
     }
 
@@ -27,6 +24,11 @@ public class AudioManager : MonoBehaviour
 
     public void PlayOneShotRandomPitchFromDictonary(string key, Vector3 position, bool single = false)
     {
+        if (!AudioDictornary.ContainsKey(key))
+        {
+            Debug.LogError("Trying to start a clip that doesn't exist");
+            return;
+        }
         if (single == true && (SingleInstanceDictonary.ContainsKey(key) && SingleInstanceDictonary[key] != null))
             return;
         GameObject gameObject = PlayOneShot(AudioDictornary[key], position);
@@ -45,8 +47,6 @@ public class AudioManager : MonoBehaviour
         Destroy(tempGO, clip.length);
         return tempGO;
     }
-
-
 
     private void OnDestroy()
     {

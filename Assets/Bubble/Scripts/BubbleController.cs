@@ -18,6 +18,8 @@ public class BubbleController : MonoBehaviour
     [SerializeField] private Color frozenColor;
     [SerializeField] private Color normalColor;
     [SerializeField] private SpriteRenderer spriteHolder;
+    [SerializeField] private LayerMask popLayer;
+    [SerializeField] private Animator animator;
 
     public event Action OnDestroyed;
 
@@ -45,7 +47,7 @@ public class BubbleController : MonoBehaviour
         rigidBody2D = GetComponent<Rigidbody2D>();
         bubbleCollider = GetComponent<Collider2D>();
         isDirectionForward = true;
-        UnFreeze();
+        UnFreeze(false);
         AudioManager.Instance.PlayOneShotRandomPitchFromDictonary("BubbleSpawn", transform.position);
     }
 
@@ -64,20 +66,23 @@ public class BubbleController : MonoBehaviour
 
     private void Freeze()
     {
+        animator.CrossFadeInFixedTime("Freeze", 0);
         AudioManager.Instance.PlayOneShotRandomPitchFromDictonary("Freeze", transform.position,true);
         ParticleManager.Instance.PlayParticleAt("Freeze", transform.position);
         isFrozen = true;
         bubbleCollider.isTrigger = false;
         freezeEndTime = Time.time + freezeTime;
         rigidBody2D.linearVelocity = Vector2.zero;
-        spriteHolder.color = frozenColor;
         spawnedUnfreezeParticle = false;
     }
 
-    private void UnFreeze()
+    private void UnFreeze(bool doAnimation = true)
     {
+        if (doAnimation)
+        {
+            animator.CrossFadeInFixedTime("UnFreeze", 0);
+        }
         isFrozen = false;
-        spriteHolder.color = normalColor;
         bubbleCollider.isTrigger = true;
     }
 
@@ -136,6 +141,8 @@ public class BubbleController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!popLayer.Contains(collision.gameObject)) { return; }
+
         if (isBouncy)
         {
             if( collision.TryGetComponent<PlayerMovement>(out var player))
@@ -144,12 +151,14 @@ public class BubbleController : MonoBehaviour
                 return;
             }
         }
+
         Pop();
     }
 
     public void Pop()
     {
         ParticleManager.Instance.PlayParticleAt("BubbleBurst", transform.position);
+        animator.CrossFadeInFixedTime("pop", 0);
         AudioManager.Instance.PlayOneShotRandomPitchFromDictonary("BubbleDeath", transform.position);
         OnDestroyed?.Invoke();
     }

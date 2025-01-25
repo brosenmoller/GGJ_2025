@@ -6,6 +6,8 @@ using UnityEngine;
 public class BubbleSpawner : MonoBehaviour 
 {
     [Header("General")]
+    [SerializeField] private bool useInitialSpawnDelay;
+    [SerializeField] private float initialSpawnDelay;
     [SerializeField] private List<SpawnElement> spawnElements = new();
     [SerializeField] private List<BubbleSpawner> linkedSpawners = new();
 
@@ -13,6 +15,12 @@ public class BubbleSpawner : MonoBehaviour
     [SerializeField] private BubbleController.Config config;
 
     private readonly List<BubbleInstance> instances = new();
+    private bool isFirstSpawn;
+
+    private void OnEnable()
+    {
+        isFirstSpawn = true;
+    }
 
     private IEnumerator Start() 
     {
@@ -22,13 +30,19 @@ public class BubbleSpawner : MonoBehaviour
 
     private IEnumerator SpawnRoutine()
     {
+        if (spawnElements.Count <= 0) { yield break; }
+
         bool areAllBubblesDestroyed = true;
         while (true)
         {
             for (int i = 0; i < spawnElements.Count; i++)
             {
                 SpawnElement spawnElement = spawnElements[i];
-                yield return new WaitForSeconds(spawnElement.SpawnDelay);
+                float delay = spawnElement.SpawnDelay;
+                if (isFirstSpawn && useInitialSpawnDelay) { delay = initialSpawnDelay; }
+
+                yield return new WaitForSeconds(delay);
+
                 if (spawnElement.CanSpawnWhenActive || areAllBubblesDestroyed)
                 {
                     BubbleInstance instance = new(spawnElement, config);
@@ -36,13 +50,15 @@ public class BubbleSpawner : MonoBehaviour
                     instance.OnDestroy += () => instances.Remove(instance);
                     instances.Add(instance);
                 }
+
+                isFirstSpawn = false;
             }
 
             areAllBubblesDestroyed = AreAllBubblesDestroyed();
         }
     }
 
-    private bool AreAllBubblesDestroyed()
+    private bool AreAllBubblesDestroyed(bool recursive = false)
     {
         for (int i = 0; i < instances.Count; i++)
         {
@@ -50,9 +66,11 @@ public class BubbleSpawner : MonoBehaviour
             if (instances[i].IsActive) { return false; }
         }
 
+        if (recursive) { return true; }
+
         for (int i = 0; i < linkedSpawners.Count; i++)
         {
-            if (!linkedSpawners[i].AreAllBubblesDestroyed()) { return false; }
+            if (!linkedSpawners[i].AreAllBubblesDestroyed(true)) { return false; }
         }
 
         return true;

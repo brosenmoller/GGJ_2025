@@ -18,11 +18,13 @@ public class PlayerSpawnPoint : MonoBehaviour
     private PlayerMovement player;
     private Rigidbody2D rigidBody2D;
     private CinemachineCamera cinemachineCamera;
+    private PlayerFreezeController freezeController;
     private bool respawning;
 
     private void Awake()
     {
         player = FindAnyObjectByType<PlayerMovement>();
+        freezeController = player.GetComponent<PlayerFreezeController>();
         rigidBody2D = player.GetComponent<Rigidbody2D>();
         cinemachineCamera = FindFirstObjectByType<CinemachineCamera>();
     }
@@ -76,12 +78,14 @@ public class PlayerSpawnPoint : MonoBehaviour
         player.raycastController.collider.enabled = false;
         rigidBody2D.linearVelocity = Vector2.zero;
         rigidBody2D.simulated = false;
+        freezeController.enabled = false;
         spawnBubble.SetActive(true);
     }
 
     private void UnBubblePlayer()
     {
         respawning = false;
+        freezeController.enabled = true;
         spawnBubble.SetActive(false);
         AudioManager.Instance.PlayOneShotRandomPitchFromDictonary("BubbleDeath", transform.position);
         ParticleManager.Instance.PlayParticleAt("BubbleBurst", transform.position);
@@ -94,7 +98,7 @@ public class PlayerSpawnPoint : MonoBehaviour
     public void Respawn()
     {
         if (respawning) { return; }
-
+        AudioManager.Instance.PlayOneShotRandomPitchFromDictonary("Death", transform.position);
         respawning = true;
         BubbleController[] bubbles = FindObjectsByType<BubbleController>(FindObjectsSortMode.None);
         foreach (BubbleController b in bubbles)
