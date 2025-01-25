@@ -10,6 +10,7 @@ public class PlayerFreezeController : MonoBehaviour
 
     public void PlayerFreezeAction(InputAction.CallbackContext callbackContext)
     {
+        ParticleManager.Instance.PlayParticleAt("FreezeStart", transform.position);
         AudioManager.Instance.PlayOneShotRandomPitchFromDictonary("FreezeAbility", transform.position, true);
         BubbleController[] freezables = FindObjectsByType<BubbleController>(FindObjectsSortMode.None);
         foreach (BubbleController controller in freezables)
