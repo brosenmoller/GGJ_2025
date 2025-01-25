@@ -8,6 +8,8 @@ public class PlayerSpawnPoint : MonoBehaviour
     [SerializeField]
     private AnimationCurve spawnCurve;
     [SerializeField]
+    private AnimationCurve respawnCurve;
+    [SerializeField]
     private float spawnDurration;
 
     [SerializeField]
@@ -16,6 +18,7 @@ public class PlayerSpawnPoint : MonoBehaviour
     private PlayerMovement player;
     private Rigidbody2D rigidBody2D;
     private CinemachineCamera cinemachineCamera;
+    private bool respawning;
 
     private void Start()
     {
@@ -74,11 +77,26 @@ public class PlayerSpawnPoint : MonoBehaviour
 
     private void UnBubblePlayer()
     {
+        respawning = false;
         spawnBubble.SetActive(false);
         ParticleManager.Instance.PlayeParticleAt("BubbleBurst", transform.position);
         rigidBody2D.simulated = true;
         player.enabled = true;
         player.raycastController.collider.enabled = true;
         cinemachineCamera.Target.TrackingTarget = player.transform;
+    }
+
+    public void respawn()
+    {
+        if (respawning)
+            return;
+        respawning = true;
+        BubbleController[] bubbles = FindObjectsByType<BubbleController>(FindObjectsSortMode.None);
+        foreach (BubbleController b in bubbles)
+        {
+            b.Pop();
+        }
+        ParticleManager.Instance.PlayeParticleAt("Death", player.transform.position);
+        BubbleAndMovePlayer(transform.position2D(), respawnCurve);
     }
 }
