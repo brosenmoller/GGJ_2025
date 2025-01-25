@@ -12,25 +12,31 @@ public class BubbleController : MonoBehaviour
 
     public event Action OnDestroyed;
 
-    private Spline spline;
-
     private Rigidbody2D rigidBody2D;
     private Collider2D bubbleCollider;
     
+    private SplineContainer spline;
     private float speed;
-    private Vector2 direction;
+    private bool isSplineLoopingEnabled;
+
     private bool isFrozen;
 
     private float freezeEndTime;
 
-    public void Setup(float speed, Vector2 direction, Spline spline) 
+    private float splineTimeValue;
+    private float splineLength;
+    private bool isDirectionForward;
+
+    public void Setup(float speed, SplineContainer spline, bool isSplineLoopingEnabled = false) 
     {
         this.speed = speed;
-        this.direction = direction;
         this.spline = spline;
+        this.isSplineLoopingEnabled = isSplineLoopingEnabled;
 
         rigidBody2D = GetComponent<Rigidbody2D>();
         bubbleCollider = GetComponent<Collider2D>();
+        splineLength = spline.CalculateLength();
+        isDirectionForward = true;
 
         UnFreeze();
     }
@@ -73,7 +79,27 @@ public class BubbleController : MonoBehaviour
             return; 
         }
 
-        rigidBody2D.linearVelocity = speed * Time.deltaTime * direction;
+        float moveDifference = speed * Time.deltaTime / splineLength;
+        if (isDirectionForward) { splineTimeValue += moveDifference; }
+        else { splineTimeValue -= moveDifference; }
+
+        if (splineTimeValue > 1)
+        {
+            if (isSplineLoopingEnabled)
+            {
+                isDirectionForward = !isDirectionForward;
+            }
+            else
+            {
+                OnDestroyed?.Invoke();
+            }
+        } else if (splineTimeValue < 0)
+        {
+            isDirectionForward = !isDirectionForward;
+        }
+
+        Vector3 currentPosition = spline.EvaluatePosition(splineTimeValue);
+        rigidBody2D.MovePosition(currentPosition);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

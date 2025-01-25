@@ -12,6 +12,7 @@ public class BubbleSpawner : MonoBehaviour
     [SerializeField] private BubbleController bubbleController;
     [SerializeField] private List<BubbleSpawner> linkedSpawners = new();
     [SerializeField] private SplineContainer spline;
+    [SerializeField] private bool splineLooping;
 
     public bool IsBubbleDestroyed { get; private set; } = true;
     private BubbleController spawnedBubble;
@@ -41,7 +42,7 @@ public class BubbleSpawner : MonoBehaviour
     {
         IsBubbleDestroyed = false;
         spawnedBubble = Instantiate(bubbleController, transform.position, Quaternion.identity);
-        spawnedBubble.Setup(bubbleSpeed, transform.forward, spline.Spline);
+        spawnedBubble.Setup(bubbleSpeed, spline, splineLooping);
         spawnedBubble.OnDestroyed += DestroyBubble;
     }
 
