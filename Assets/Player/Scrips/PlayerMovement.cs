@@ -40,9 +40,6 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
 
-
- 
-
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
         raycastController = GetComponent<RaycastController>();
@@ -83,8 +80,7 @@ public class PlayerMovement : MonoBehaviour
                 //Posible Land animation
             }
         }
-        StepBump();
-        JumpBumb();
+        
     }
 
     private void InitiateJump() {
@@ -114,14 +110,17 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void FixedUpdate() {
+
         HorizontalMovement();
         if (jumpTimer > Time.time && (groundTimer > Time.time || isGrounded)) {
             Jump(currentJumpVelocity);
         }
         if (rb.linearVelocityY < 0)
         {
-            rb.AddForce(Vector3.up * Physics.gravity.y * fallMultiplier,ForceMode2D.Impulse);
+            rb.AddForce(Vector3.up * Physics.gravity.y * fallMultiplier * Time.fixedDeltaTime,ForceMode2D.Impulse);
         }
+        StepBump();
+        JumpBumb();
         SpeedClamps();
     }
 
@@ -140,6 +139,8 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = new Vector2(horizontalVelocity, rb.linearVelocity.y);
     }
     private void Jump(float jumpVelocity) {
+        JumpBumpLeft();
+        JumpBumpRight();
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpVelocity);
 
         jumpTimer = 0;

@@ -240,6 +240,74 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Debug",
+            "id": "efa61eab-7314-438d-9c78-b4754e004493",
+            "actions": [
+                {
+                    "name": "Minus TimeScale",
+                    "type": "Button",
+                    "id": "3969fa8a-af28-438a-b454-6887c7cd36c9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Plus TimeScale",
+                    "type": "Button",
+                    "id": "ce20a9db-dc48-451b-9be6-3b4441e16b18",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause TimeScale",
+                    "type": "Button",
+                    "id": "8bac569c-b26f-4944-8083-d3837f89d24c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "409fcd6c-cda7-471e-aca1-7ac49defa3aa",
+                    "path": "<Keyboard>/minus",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Minus TimeScale",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9c7bc123-5bdb-4bfb-b9ea-af0f57834766",
+                    "path": "<Keyboard>/equals",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Plus TimeScale",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "46ec5bb2-a869-4eb7-b116-12569b786335",
+                    "path": "<Keyboard>/backspace",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause TimeScale",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

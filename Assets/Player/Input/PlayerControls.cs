@@ -262,6 +262,74 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Debug"",
+            ""id"": ""efa61eab-7314-438d-9c78-b4754e004493"",
+            ""actions"": [
+                {
+                    ""name"": ""Minus TimeScale"",
+                    ""type"": ""Button"",
+                    ""id"": ""3969fa8a-af28-438a-b454-6887c7cd36c9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Plus TimeScale"",
+                    ""type"": ""Button"",
+                    ""id"": ""ce20a9db-dc48-451b-9be6-3b4441e16b18"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause TimeScale"",
+                    ""type"": ""Button"",
+                    ""id"": ""8bac569c-b26f-4944-8083-d3837f89d24c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""409fcd6c-cda7-471e-aca1-7ac49defa3aa"",
+                    ""path"": ""<Keyboard>/minus"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Minus TimeScale"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9c7bc123-5bdb-4bfb-b9ea-af0f57834766"",
+                    ""path"": ""<Keyboard>/equals"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Plus TimeScale"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""46ec5bb2-a869-4eb7-b116-12569b786335"",
+                    ""path"": ""<Keyboard>/backspace"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause TimeScale"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -301,11 +369,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Gameplay_Continue = m_Gameplay.FindAction("Continue", throwIfNotFound: true);
         m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
         m_Gameplay_Freeze = m_Gameplay.FindAction("Freeze", throwIfNotFound: true);
+        // Debug
+        m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
+        m_Debug_MinusTimeScale = m_Debug.FindAction("Minus TimeScale", throwIfNotFound: true);
+        m_Debug_PlusTimeScale = m_Debug.FindAction("Plus TimeScale", throwIfNotFound: true);
+        m_Debug_PauseTimeScale = m_Debug.FindAction("Pause TimeScale", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
     {
         UnityEngine.Debug.Assert(!m_Gameplay.enabled, "This will cause a leak and performance issues, PlayerControls.Gameplay.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Debug.enabled, "This will cause a leak and performance issues, PlayerControls.Debug.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -441,6 +515,68 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public GameplayActions @Gameplay => new GameplayActions(this);
+
+    // Debug
+    private readonly InputActionMap m_Debug;
+    private List<IDebugActions> m_DebugActionsCallbackInterfaces = new List<IDebugActions>();
+    private readonly InputAction m_Debug_MinusTimeScale;
+    private readonly InputAction m_Debug_PlusTimeScale;
+    private readonly InputAction m_Debug_PauseTimeScale;
+    public struct DebugActions
+    {
+        private @PlayerControls m_Wrapper;
+        public DebugActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @MinusTimeScale => m_Wrapper.m_Debug_MinusTimeScale;
+        public InputAction @PlusTimeScale => m_Wrapper.m_Debug_PlusTimeScale;
+        public InputAction @PauseTimeScale => m_Wrapper.m_Debug_PauseTimeScale;
+        public InputActionMap Get() { return m_Wrapper.m_Debug; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DebugActions set) { return set.Get(); }
+        public void AddCallbacks(IDebugActions instance)
+        {
+            if (instance == null || m_Wrapper.m_DebugActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_DebugActionsCallbackInterfaces.Add(instance);
+            @MinusTimeScale.started += instance.OnMinusTimeScale;
+            @MinusTimeScale.performed += instance.OnMinusTimeScale;
+            @MinusTimeScale.canceled += instance.OnMinusTimeScale;
+            @PlusTimeScale.started += instance.OnPlusTimeScale;
+            @PlusTimeScale.performed += instance.OnPlusTimeScale;
+            @PlusTimeScale.canceled += instance.OnPlusTimeScale;
+            @PauseTimeScale.started += instance.OnPauseTimeScale;
+            @PauseTimeScale.performed += instance.OnPauseTimeScale;
+            @PauseTimeScale.canceled += instance.OnPauseTimeScale;
+        }
+
+        private void UnregisterCallbacks(IDebugActions instance)
+        {
+            @MinusTimeScale.started -= instance.OnMinusTimeScale;
+            @MinusTimeScale.performed -= instance.OnMinusTimeScale;
+            @MinusTimeScale.canceled -= instance.OnMinusTimeScale;
+            @PlusTimeScale.started -= instance.OnPlusTimeScale;
+            @PlusTimeScale.performed -= instance.OnPlusTimeScale;
+            @PlusTimeScale.canceled -= instance.OnPlusTimeScale;
+            @PauseTimeScale.started -= instance.OnPauseTimeScale;
+            @PauseTimeScale.performed -= instance.OnPauseTimeScale;
+            @PauseTimeScale.canceled -= instance.OnPauseTimeScale;
+        }
+
+        public void RemoveCallbacks(IDebugActions instance)
+        {
+            if (m_Wrapper.m_DebugActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IDebugActions instance)
+        {
+            foreach (var item in m_Wrapper.m_DebugActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_DebugActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public DebugActions @Debug => new DebugActions(this);
     private int m_KeyBoardandMouseSchemeIndex = -1;
     public InputControlScheme KeyBoardandMouseScheme
     {
@@ -466,5 +602,11 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnContinue(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnFreeze(InputAction.CallbackContext context);
+    }
+    public interface IDebugActions
+    {
+        void OnMinusTimeScale(InputAction.CallbackContext context);
+        void OnPlusTimeScale(InputAction.CallbackContext context);
+        void OnPauseTimeScale(InputAction.CallbackContext context);
     }
 }
