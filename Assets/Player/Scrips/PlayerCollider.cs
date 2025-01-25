@@ -1,27 +1,29 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
 public class PlayerCollider : MonoBehaviour
 {
-    PlayerMovement playerMovement;
-    new Rigidbody2D rigidbody2D;
-    PlayerSpawnPoint spawnPoint;
+    private PlayerSpawnPoint spawnPoint;
+
     [SerializeField]
     private ParticleSystem deathParticle;
+
     [SerializeField]
     private ParticleSystem burstParticle;
+
     [SerializeField]
     private AnimationCurve respawnCurve;
+
     [SerializeField]
     private float respawnDurration;
-    public GameObject spawnbubble;
 
+    [SerializeField]
+    private Transform destinationTransform;
+
+    public GameObject spawnbubble;
 
     private void Awake()
     {
-        playerMovement = GetComponent<PlayerMovement>();
-        rigidbody2D = GetComponent<Rigidbody2D>();
         spawnPoint = FindFirstObjectByType<PlayerSpawnPoint>();
     }
 
@@ -34,36 +36,18 @@ public class PlayerCollider : MonoBehaviour
             {
                 b.Pop();
             }
-            playerMovement.enabled = false;
-            playerMovement.raycastController.collider.enabled = false;
-            rigidbody2D.linearVelocity = Vector2.zero;
-            rigidbody2D.simulated = false;
+
             deathParticle.Play();
-            StartCoroutine(Respawn());
+            spawnPoint.BubbleAndMovePlayer(spawnPoint.transform.position2D(), respawnCurve);
+        } 
+        else if (collision.CompareTag("LevelEnd"))
+        {
+            spawnPoint.BubbleAndMovePlayer(destinationTransform.position2D(), respawnCurve, HandleLevelEnd);
         }
     }
 
-    private IEnumerator Respawn()
+    private void HandleLevelEnd()
     {
-        yield return new WaitForSeconds(0.7f);
-        spawnbubble.SetActive(true);
-        Vector2 startPostion = rigidbody2D.position;
-        float time = 0;
-        while (transform.position2D() != spawnPoint.transform.position2D())
-        {
-            time += Time.deltaTime;
-            transform.position = Vector2.Lerp(startPostion, spawnPoint.transform.position2D(), respawnCurve.Evaluate(time/respawnDurration));
-            if(time >= respawnDurration)
-            {
-                transform.position = spawnPoint.transform.position2D();
-            }
-            yield return null;
-        }
-        spawnbubble.SetActive(false);
-        Instantiate(burstParticle, transform.position, Quaternion.identity);
-        rigidbody2D.simulated = true;
-        playerMovement.enabled = true;
-        playerMovement.raycastController.collider.enabled = true;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-    
 }
