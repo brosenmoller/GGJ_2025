@@ -47,6 +47,7 @@ public class BubbleController : MonoBehaviour
         isDirectionForward = true;
         OnDestroyed += spawnBurstParticle;
         UnFreeze();
+        AudioManager.Instance.PlayOneShotRandomPitchFromDictonary("BubbleSpawn", transform.position);
     }
 
     public void TriggerFreezeAction() 
@@ -135,6 +136,7 @@ public class BubbleController : MonoBehaviour
     private void spawnBurstParticle()
     {
         ParticleManager.Instance.PlayeParticleAt("BubbleBurst", transform.position);
+        AudioManager.Instance.PlayOneShotRandomPitchFromDictonary("BubbleDeath", transform.position);
     }
 
     protected virtual void OnDisable()
