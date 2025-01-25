@@ -119,7 +119,7 @@ public class BubbleSpawner : MonoBehaviour
         {
             if (IsActive)
             {
-                Destroy(instance.gameObject);
+                
                 OnDestroy?.Invoke();   
             }
         }
