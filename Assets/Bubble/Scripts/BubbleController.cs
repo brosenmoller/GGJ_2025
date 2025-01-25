@@ -19,7 +19,7 @@ public class BubbleController : MonoBehaviour
     [SerializeField] private Color normalColor;
     [SerializeField] private SpriteRenderer spriteHolder;
 
-    public event Action OnDestroyed;
+    public event Action<BubbleController> OnDestroyed;
 
     private Rigidbody2D rigidBody2D;
     private Collider2D bubbleCollider;
@@ -45,7 +45,6 @@ public class BubbleController : MonoBehaviour
         rigidBody2D = GetComponent<Rigidbody2D>();
         bubbleCollider = GetComponent<Collider2D>();
         isDirectionForward = true;
-        OnDestroyed += spawnBurstParticle;
         UnFreeze();
         AudioManager.Instance.PlayOneShotRandomPitchFromDictonary("BubbleSpawn", transform.position);
     }
@@ -55,7 +54,7 @@ public class BubbleController : MonoBehaviour
         if (!freezeable) return;
         if (isFrozen)
         {
-            OnDestroyed?.Invoke();
+            Pop();
         } 
         else
         {
@@ -65,7 +64,7 @@ public class BubbleController : MonoBehaviour
 
     private void Freeze()
     {
-        ParticleManager.Instance.PlayeParticleAt("Freeze", transform.position);
+        ParticleManager.Instance.PlayParticleAt("Freeze", transform.position);
         isFrozen = true;
         bubbleCollider.isTrigger = false;
         freezeEndTime = Time.time + freezeTime;
@@ -86,7 +85,7 @@ public class BubbleController : MonoBehaviour
         if (isFrozen) {
             if(Time.time > freezeEndTime - 1 && !spawnedUnfreezeParticle)
             {
-                ParticleManager.Instance.PlayeParticleAt("FreezeEnd", transform.position);
+                ParticleManager.Instance.PlayParticleAt("FreezeEnd", transform.position);
                 spawnedUnfreezeParticle = true;
             }
             if (Time.time > freezeEndTime) {
@@ -108,7 +107,7 @@ public class BubbleController : MonoBehaviour
             }
             else
             {
-                OnDestroyed?.Invoke();
+                Pop();
             }
         } else if (splineTimeValue < 0)
         {
@@ -130,23 +129,12 @@ public class BubbleController : MonoBehaviour
                 return;
             }
         }
-        OnDestroyed?.Invoke();
-    }
-
-    private void spawnBurstParticle()
-    {
-        ParticleManager.Instance.PlayeParticleAt("BubbleBurst", transform.position);
-        AudioManager.Instance.PlayOneShotRandomPitchFromDictonary("BubbleDeath", transform.position);
-    }
-
-    protected virtual void OnDisable()
-    {
-        OnDestroyed -= spawnBurstParticle;
+        Pop();
     }
 
     public void Pop()
     {
-        OnDestroyed?.Invoke();
+        ParticleManager.Instance.PlayParticleAt("BubbleBurst", transform.position);
+        OnDestroyed?.Invoke(this);
     }
-
 }

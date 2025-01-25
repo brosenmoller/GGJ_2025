@@ -31,7 +31,7 @@ public class PlayerCollider : MonoBehaviour
     {
         if (collision.CompareTag("DeathTrigger"))
         {
-            spawnPoint.respawn();
+            spawnPoint.Respawn();
         } 
         else if (collision.CompareTag("LevelEnd"))
         {

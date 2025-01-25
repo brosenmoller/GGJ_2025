@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class BubbleControllerKeepAlive : BubbleController
 {
     private PlayerSpawnPoint spawnPoint;
@@ -10,12 +8,16 @@ public class BubbleControllerKeepAlive : BubbleController
 
     private void OnEnable()
     {
-        OnDestroyed += spawnPoint.respawn;
+        OnDestroyed += KillPlayer;
     }
 
-    protected override void OnDisable()
+    protected void OnDisable()
     {
-        base.OnDisable();
-        OnDestroyed -= spawnPoint.respawn;
+        OnDestroyed -= KillPlayer;
+    }
+
+    private void KillPlayer(BubbleController _)
+    {
+        spawnPoint.Respawn();
     }
 }

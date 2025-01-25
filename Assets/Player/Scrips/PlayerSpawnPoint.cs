@@ -20,12 +20,16 @@ public class PlayerSpawnPoint : MonoBehaviour
     private CinemachineCamera cinemachineCamera;
     private bool respawning;
 
-    private void Start()
+    private void Awake()
     {
         player = FindAnyObjectByType<PlayerMovement>();
         rigidBody2D = player.GetComponent<Rigidbody2D>();
         cinemachineCamera = FindFirstObjectByType<CinemachineCamera>();
+    }
 
+    private IEnumerator Start()
+    {
+        yield return ParticleManager.WaitUntillExists;
         BubbleAndMovePlayer(transform.position2D(), spawnCurve);
     }
 
@@ -87,17 +91,18 @@ public class PlayerSpawnPoint : MonoBehaviour
         cinemachineCamera.Target.TrackingTarget = player.transform;
     }
 
-    public void respawn()
+    public void Respawn()
     {
-        if (respawning)
-            return;
+        if (respawning) { return; }
+
         respawning = true;
         BubbleController[] bubbles = FindObjectsByType<BubbleController>(FindObjectsSortMode.None);
         foreach (BubbleController b in bubbles)
         {
             b.Pop();
         }
-        ParticleManager.Instance.PlayeParticleAt("Death", player.transform.position);
+
+        ParticleManager.Instance.PlayParticleAt("Death", player.transform.position);
         BubbleAndMovePlayer(transform.position2D(), respawnCurve);
     }
 }
