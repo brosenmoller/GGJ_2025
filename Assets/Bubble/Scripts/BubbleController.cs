@@ -19,7 +19,7 @@ public class BubbleController : MonoBehaviour
     [SerializeField] private Color normalColor;
     [SerializeField] private SpriteRenderer spriteHolder;
 
-    public event Action<BubbleController> OnDestroyed;
+    public event Action OnDestroyed;
 
     private Rigidbody2D rigidBody2D;
     private Collider2D bubbleCollider;
@@ -104,7 +104,14 @@ public class BubbleController : MonoBehaviour
         {
             if (config.IsSplineLoopingEnabled)
             {
-                isDirectionForward = !isDirectionForward;
+                if (config.Spline.Spline.Closed)
+                {
+                    splineTimeValue -= 1;
+                }
+                else
+                {
+                    isDirectionForward = !isDirectionForward;
+                }
             }
             else
             {
@@ -112,7 +119,14 @@ public class BubbleController : MonoBehaviour
             }
         } else if (splineTimeValue < 0)
         {
-            isDirectionForward = !isDirectionForward;
+            if (config.Spline.Spline.Closed)
+            {
+                splineTimeValue += 1;
+            }
+            else
+            {
+                isDirectionForward = !isDirectionForward;
+            }
         }
 
         float splineDistance = config.SplineCurve.Evaluate(splineTimeValue);
@@ -137,6 +151,6 @@ public class BubbleController : MonoBehaviour
     {
         ParticleManager.Instance.PlayParticleAt("BubbleBurst", transform.position);
         AudioManager.Instance.PlayOneShotRandomPitchFromDictonary("BubbleDeath", transform.position);
-        OnDestroyed?.Invoke(this);
+        OnDestroyed?.Invoke();
     }
 }
