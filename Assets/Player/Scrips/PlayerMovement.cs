@@ -85,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
             if (groundTimer < Time.time - groundDelay) {
                 //Posible Land animation
                 particleManager.GROUNDHIT.Play();
+                AudioManager.Instance.PlayOneShotRandomPitchFromDictonary("Land", transform.position);
             }
         }
         
@@ -159,6 +160,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Jump(float jumpVelocity) {
         particleManager.JUMP.Play();
+        AudioManager.Instance.PlayOneShotRandomPitchFromDictonary("Jump", transform.position);
         JumpBumpLeft();
         JumpBumpRight();
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpVelocity);

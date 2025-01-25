@@ -98,7 +98,7 @@ public class PlayerSpawnPoint : MonoBehaviour
     public void Respawn()
     {
         if (respawning) { return; }
-
+        AudioManager.Instance.PlayOneShotRandomPitchFromDictonary("Death", transform.position);
         respawning = true;
         BubbleController[] bubbles = FindObjectsByType<BubbleController>(FindObjectsSortMode.None);
         foreach (BubbleController b in bubbles)
