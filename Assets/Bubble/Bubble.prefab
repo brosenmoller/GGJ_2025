@@ -54,6 +54,7 @@ MonoBehaviour:
   popLayer:
     serializedVersion: 2
     m_Bits: 9
+  animator: {fileID: 3850924370678745964}
   freezeable: 1
   isBouncy: 0
 --- !u!50 &6903916724284022418
@@ -139,6 +140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3615615514106269263}
   - component: {fileID: 3536035749961346978}
+  - component: {fileID: 3850924370678745964}
   m_Layer: 0
   m_Name: SpriteHolderBubble
   m_TagString: Untagged
@@ -156,7 +158,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.07, y: 0.07, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8298816262566517989}
@@ -205,7 +207,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 011494c811e2f4243a59a05bf36791c9, type: 3}
+  m_Sprite: {fileID: 4970786197106168215, guid: 65659e2357666e04097090f346726992, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -216,3 +218,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &3850924370678745964
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8093921898299846010}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e7bb92ca980f22f42b307547f5b4494d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
