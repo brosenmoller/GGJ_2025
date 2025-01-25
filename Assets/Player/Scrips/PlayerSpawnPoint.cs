@@ -91,6 +91,7 @@ public class PlayerSpawnPoint : MonoBehaviour
         ParticleManager.Instance.PlayParticleAt("BubbleBurst", transform.position);
         rigidBody2D.simulated = true;
         player.enabled = true;
+        player.HardReset();
         player.raycastController.collider.enabled = true;
         cinemachineCamera.Target.TrackingTarget = player.transform;
     }
