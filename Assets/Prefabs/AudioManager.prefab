@@ -158,3 +158,4 @@ MonoBehaviour:
       value: {fileID: 8300000, guid: 671283dd3b6242e4ea42f7d98e8a84a2, type: 3}
     - key: Land
       value: {fileID: 8300000, guid: cea442e00e81eb440afd3bebe8b351fa, type: 3}
+  steps: {fileID: 11400000, guid: b1a4565d25d6dc846b93d0ade8970f35, type: 2}
