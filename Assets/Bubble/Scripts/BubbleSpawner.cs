@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Splines;
 
 public class BubbleSpawner : MonoBehaviour 
 {
@@ -46,7 +48,7 @@ public class BubbleSpawner : MonoBehaviour
                 if (spawnElement.CanSpawnWhenActive || areAllBubblesDestroyed)
                 {
                     BubbleInstance instance = new(spawnElement, config);
-                    instance.SpawnBubble(transform.position);
+                    instance.SpawnBubble();
                     instance.OnDestroy += () => instances.Remove(instance);
                     instances.Add(instance);
                 }
@@ -76,12 +78,6 @@ public class BubbleSpawner : MonoBehaviour
         return true;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position, 0.6f);
-    }
-
     [Serializable]
     public class SpawnElement
     {
@@ -99,7 +95,7 @@ public class BubbleSpawner : MonoBehaviour
         public event Action OnDestroy;
 
         public readonly SpawnElement spawnElement;
-        private readonly BubbleController.Config config;
+        public readonly BubbleController.Config config;
 
         public BubbleInstance(SpawnElement spawnElement, BubbleController.Config config)
         {
@@ -107,10 +103,10 @@ public class BubbleSpawner : MonoBehaviour
             this.config = config;
         }
 
-        public void SpawnBubble(Vector3 position)
+        public void SpawnBubble()
         {
             DestroyBubble();
-            instance = Instantiate(spawnElement.BubbleController, position, Quaternion.identity);
+            instance = Instantiate(spawnElement.BubbleController, config.Spline.EvaluatePosition(0), Quaternion.identity);
             instance.Setup(config);
             instance.OnDestroyed += DestroyBubble;
         }
@@ -119,7 +115,6 @@ public class BubbleSpawner : MonoBehaviour
         {
             if (IsActive)
             {
-                
                 OnDestroy?.Invoke();   
             }
         }
