@@ -108,6 +108,17 @@ public class PlayerSpawnPoint : MonoBehaviour
         }
 
         ParticleManager.Instance.PlayParticleAt("Death", player.transform.position);
+        StartCoroutine(DelayedBubble());
+    }
+
+    IEnumerator DelayedBubble()
+    {
+        player.enabled = false;
+        player.raycastController.collider.enabled = false;
+        rigidBody2D.linearVelocity = Vector2.zero;
+        rigidBody2D.simulated = false;
+        freezeController.enabled = false;
+        yield return new WaitForSeconds(0.4f);
         BubbleAndMovePlayer(transform.position2D(), respawnCurve);
     }
 }
