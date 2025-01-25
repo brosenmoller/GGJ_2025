@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Transform spriteHolder;
+    private PlayerAnimator animator;
 
     public RaycastController raycastController { get; private set; }
 
@@ -43,13 +44,16 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerParticleManager particleManager;
 
-    private void Awake() {
+    private void Awake()
+    {
         rb = GetComponent<Rigidbody2D>();
         raycastController = GetComponent<RaycastController>();
         particleManager = GetComponentInChildren<PlayerParticleManager>();
+        animator = GetComponent<PlayerAnimator>();
     }
 
-    private void Start() {
+    private void Start()
+    {
         raycastController.UpdateRaycastOrigins();
         raycastController.CalculateRaySpacing();
 
@@ -61,54 +65,66 @@ public class PlayerMovement : MonoBehaviour
         SetupControls();
     }
 
-    private void SetupControls() {
+    private void SetupControls()
+    {
         InputManager.Instance.Controls.Gameplay.HorizontalMovement.performed += movement_ctx => UpdateMovementDirection((int)movement_ctx.ReadValue<float>());
         InputManager.Instance.Controls.Gameplay.HorizontalMovement.canceled += _ => UpdateMovementDirection(0);
         InputManager.Instance.Controls.Gameplay.Jump.started += _ => InitiateJump();
         InputManager.Instance.Controls.Gameplay.Jump.canceled += _ => CutJumpVelocity();
     }
 
-    private void Update() {
+    private void Update()
+    {
         wasGrounded = isGrounded;
         isGrounded = GroundCheck();
+        animator.SetGrounded(isGrounded);
 
         // take off (coyote time)
-        if (wasGrounded && !isGrounded) {
+        if (wasGrounded && !isGrounded)
+        {
             groundTimer = Time.time + groundDelay;
             wasGrounded = false;
         }
 
         // landing
-        if (!wasGrounded && isGrounded) {
+        if (!wasGrounded && isGrounded)
+        {
             StartCoroutine(JumpSqueeze(xSqueeze, ySqueeze, squeezeDuration));
 
-            if (groundTimer < Time.time - groundDelay) {
+            if (groundTimer < Time.time - groundDelay)
+            {
                 //Posible Land animation
+                animator.LandTrigger();
                 particleManager.GROUNDHIT.Play();
                 AudioManager.Instance.PlayOneShotRandomPitchFromDictonary("Land", transform.position);
             }
         }
-        
+
     }
 
-    private void InitiateJump() {
+    private void InitiateJump()
+    {
         jumpTimer = Time.time + jumpDelay;
     }
 
-    private void CutJumpVelocity() {
+    private void CutJumpVelocity()
+    {
         if (jumpTimer > 0) // Release Jumpbutton before touching the ground
         {
             currentJumpVelocity = maxJumpVelocity * (jumpCutOff + 0.1f);
-        } else if (rb.linearVelocity.y > 0) {
+        }
+        else if (rb.linearVelocity.y > 0)
+        {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * jumpCutOff);
         }
     }
 
-    public void UpdateMovementDirection(int newMovementX) {
+    public void UpdateMovementDirection(int newMovementX)
+    {
         FlipSprite(newMovementX);
         movementX = newMovementX;
 
-        if(isGrounded && !SameDirection(movementX, rb.linearVelocityX))
+        if (isGrounded && !SameDirection(movementX, rb.linearVelocityX))
         {
             if (movementX == 1)
             {
@@ -121,45 +137,60 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void FlipSprite(float movementX) {
-        if (movementX == 1) {
+    private void FlipSprite(float movementX)
+    {
+        if (movementX == 1)
+        {
             spriteHolder.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
-        } else if (movementX == -1) {
+        }
+        else if (movementX == -1)
+        {
             spriteHolder.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
         }
     }
 
-    private void FixedUpdate() {
+    private void FixedUpdate()
+    {
 
         HorizontalMovement();
-        if (jumpTimer > Time.time && (groundTimer > Time.time || isGrounded)) {
+        if (jumpTimer > Time.time && (groundTimer > Time.time || isGrounded))
+        {
             Jump(currentJumpVelocity);
         }
         if (rb.linearVelocityY < 0)
         {
-            rb.AddForce(Vector3.up * Physics.gravity.y * fallMultiplier * Time.fixedDeltaTime,ForceMode2D.Impulse);
+            rb.AddForce(Vector3.up * Physics.gravity.y * fallMultiplier * Time.fixedDeltaTime, ForceMode2D.Impulse);
         }
         StepBump();
         JumpBumb();
         SpeedClamps();
+        animator.SetMoving(Mathf.Abs(rb.linearVelocityX) != 0);
     }
 
-    private void HorizontalMovement() {
+    private void HorizontalMovement()
+    {
         float horizontalVelocity = rb.linearVelocity.x;
         horizontalVelocity += movementX;
 
-        if (Mathf.Abs(movementX) < 0.01f) {
+        if (Mathf.Abs(movementX) < 0.01f)
+        {
             horizontalVelocity *= Mathf.Pow(1f - horizontalDampingWhenStopping, Time.deltaTime * 10f);
-        } else if (Mathf.Sign(movementX) != Mathf.Sign(horizontalVelocity)) {
+        }
+        else if (Mathf.Sign(movementX) != Mathf.Sign(horizontalVelocity))
+        {
             horizontalVelocity *= Mathf.Pow(1f - horizontalDampingWhenTurning, Time.deltaTime * 10f);
-        } else {
+        }
+        else
+        {
             horizontalVelocity *= Mathf.Pow(1f - basicHorizontalDamping, Time.deltaTime * 10f);
         }
 
         rb.linearVelocity = new Vector2(horizontalVelocity, rb.linearVelocity.y);
     }
-    private void Jump(float jumpVelocity) {
+    private void Jump(float jumpVelocity)
+    {
         particleManager.JUMP.Play();
+        animator.JumpTrigger();
         AudioManager.Instance.PlayOneShotRandomPitchFromDictonary("Jump", transform.position);
         JumpBumpLeft();
         JumpBumpRight();
@@ -171,7 +202,8 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(JumpSqueeze(ySqueeze, xSqueeze, squeezeDuration));
     }
 
-    public bool GroundCheck() {
+    public bool GroundCheck()
+    {
 
         raycastController.UpdateRaycastOrigins();
         float rayLength = RaycastController.skinWidth * 3f;
@@ -191,7 +223,8 @@ public class PlayerMovement : MonoBehaviour
         return false;
     }
 
-    IEnumerator JumpSqueeze(float xSqueeze, float ySqueeze, float seconds) {
+    IEnumerator JumpSqueeze(float xSqueeze, float ySqueeze, float seconds)
+    {
         Vector3 originalSize = Vector3.one;
         Vector3 newSize = new Vector3(xSqueeze, ySqueeze, originalSize.z);
 
@@ -199,14 +232,16 @@ public class PlayerMovement : MonoBehaviour
         Vector3 newPos = new Vector3(0, -.1f, oldPos.z);
 
         float time = 0f;
-        while (time <= 1.0) {
+        while (time <= 1.0)
+        {
             time += Time.deltaTime / seconds;
             spriteHolder.localScale = Vector3.Lerp(originalSize, newSize, time);
             spriteHolder.localPosition = Vector3.Lerp(oldPos, newPos, time);
             yield return null;
         }
         time = 0f;
-        while (time <= 1.0) {
+        while (time <= 1.0)
+        {
             time += Time.deltaTime / seconds;
             spriteHolder.localScale = Vector3.Lerp(newSize, originalSize, time);
             spriteHolder.localPosition = Vector3.Lerp(newPos, oldPos, time);
@@ -217,9 +252,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void StepBump()
     {
-        if(movementX < 0)
+        if (movementX < 0)
             StepBumpLeft();
-        if(movementX > 0)
+        if (movementX > 0)
             StepBumpRight();
     }
 
@@ -309,7 +344,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        for(int i = 2; i < 7; i++)
+        for (int i = 2; i < 7; i++)
         {
             rayOrigin += Vector2.left * 0.05f;
             Debug.DrawRay(rayOrigin, Vector2.up * rayLength, Color.red);
@@ -333,7 +368,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(Vector2.down * bounceForce, ForceMode2D.Impulse);
         }
-       
+
     }
 
     public void SpeedClamps()
