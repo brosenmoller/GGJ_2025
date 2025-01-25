@@ -135,6 +135,7 @@ public class BubbleController : MonoBehaviour
     public void Pop()
     {
         ParticleManager.Instance.PlayParticleAt("BubbleBurst", transform.position);
+        AudioManager.Instance.PlayOneShotRandomPitchFromDictonary("BubbleDeath", transform.position);
         OnDestroyed?.Invoke(this);
     }
 }
