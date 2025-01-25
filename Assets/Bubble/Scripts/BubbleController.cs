@@ -163,10 +163,16 @@ public class BubbleController : MonoBehaviour
         ParticleManager.Instance.PlayParticleAt("BubbleBurst", transform.position);
         animator.CrossFadeInFixedTime("pop", 0);
         AudioManager.Instance.PlayOneShotRandomPitchFromDictonary("BubbleDeath", transform.position);
-        OnDestroyed?.Invoke();
+        
         bubbleCollider.enabled = false;
         isDestroyed = true;
 
-        Destroy(gameObject, 0.5f);
+        Invoke(nameof(AfterAnimation), 0.3f);
+    }
+
+    public void AfterAnimation()
+    {
+        Destroy(gameObject);
+        OnDestroyed?.Invoke();
     }
 }
