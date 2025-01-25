@@ -19,11 +19,6 @@ public class BubbleController : MonoBehaviour
     [SerializeField] private Color normalColor;
     [SerializeField] private SpriteRenderer spriteHolder;
 
-    [Header("Particles")]
-    [SerializeField] private ParticleSystem burstParticle;
-    [SerializeField] private ParticleSystem FreezeParticle;
-    [SerializeField] private ParticleSystem FreezeEndParticle;
-
     public event Action OnDestroyed;
 
     private Rigidbody2D rigidBody2D;
@@ -69,8 +64,7 @@ public class BubbleController : MonoBehaviour
 
     private void Freeze()
     {
-        //TODO: Replace with pool instead of instantiate
-        Instantiate(FreezeParticle, transform.position, Quaternion.identity);
+        ParticleManager.Instance.PlayeParticleAt("Freeze", transform.position);
         isFrozen = true;
         bubbleCollider.isTrigger = false;
         freezeEndTime = Time.time + freezeTime;
@@ -91,8 +85,7 @@ public class BubbleController : MonoBehaviour
         if (isFrozen) {
             if(Time.time > freezeEndTime - 1 && !spawnedUnfreezeParticle)
             {
-                //TODO: Replace with pool instead of instantiate
-                Instantiate(FreezeEndParticle, transform.position, Quaternion.identity);
+                ParticleManager.Instance.PlayeParticleAt("FreezeEnd", transform.position);
                 spawnedUnfreezeParticle = true;
             }
             if (Time.time > freezeEndTime) {
@@ -139,10 +132,9 @@ public class BubbleController : MonoBehaviour
         OnDestroyed?.Invoke();
     }
 
-    //TODO: Replace with pool instead of instantiate
     private void spawnBurstParticle()
     {
-        Instantiate(burstParticle, transform.position, Quaternion.identity);
+        ParticleManager.Instance.PlayeParticleAt("BubbleBurst", transform.position);
     }
 
     private void OnDisable()

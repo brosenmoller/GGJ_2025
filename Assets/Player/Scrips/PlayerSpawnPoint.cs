@@ -9,8 +9,6 @@ public class PlayerSpawnPoint : MonoBehaviour
     private AnimationCurve spawnCurve;
     [SerializeField]
     private float spawnDurration;
-    [SerializeField]
-    private ParticleSystem burstParticle;
 
     [SerializeField]
     private GameObject spawnBubble;
@@ -77,7 +75,7 @@ public class PlayerSpawnPoint : MonoBehaviour
     private void UnBubblePlayer()
     {
         spawnBubble.SetActive(false);
-        Instantiate(burstParticle, transform.position, Quaternion.identity);
+        ParticleManager.Instance.PlayeParticleAt("BubbleBurst", transform.position);
         rigidBody2D.simulated = true;
         player.enabled = true;
         player.raycastController.collider.enabled = true;
