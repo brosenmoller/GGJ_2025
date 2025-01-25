@@ -412,7 +412,7 @@ GameObject:
   - component: {fileID: 6232013856827084278}
   - component: {fileID: 49215076782713132}
   - component: {fileID: 3713234084072077059}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CollisionMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -556,7 +556,7 @@ TilemapCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
+  m_CompositeOperation: 1
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
