@@ -19,7 +19,7 @@ public class BubbleController : MonoBehaviour
     [SerializeField] private Color normalColor;
     [SerializeField] private SpriteRenderer spriteHolder;
 
-    public event Action<BubbleController> OnDestroyed;
+    public event Action OnDestroyed;
 
     private Rigidbody2D rigidBody2D;
     private Collider2D bubbleCollider;
@@ -134,6 +134,6 @@ public class BubbleController : MonoBehaviour
     public void Pop()
     {
         ParticleManager.Instance.PlayParticleAt("BubbleBurst", transform.position);
-        OnDestroyed?.Invoke(this);
+        OnDestroyed?.Invoke();
     }
 }

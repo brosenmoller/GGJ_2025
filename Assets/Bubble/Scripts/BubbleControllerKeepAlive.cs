@@ -16,7 +16,7 @@ public class BubbleControllerKeepAlive : BubbleController
         OnDestroyed -= KillPlayer;
     }
 
-    private void KillPlayer(BubbleController _)
+    private void KillPlayer()
     {
         spawnPoint.Respawn();
     }

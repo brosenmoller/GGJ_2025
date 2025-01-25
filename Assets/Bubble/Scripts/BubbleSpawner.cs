@@ -1,18 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class BubbleSpawner : MonoBehaviour 
 {
-    [Serializable]
-    public class SpawnElement
-    {
-        [field: SerializeField] public float SpawnDelay { get; private set; }
-        [field: SerializeField] public BubbleController BubbleController { get; private set; }
-    }
-
     [Header("General")]
     [SerializeField] private List<SpawnElement> spawnElements = new();
     [SerializeField] private List<BubbleSpawner> linkedSpawners = new();
@@ -20,9 +12,7 @@ public class BubbleSpawner : MonoBehaviour
     [Header("Spline")]
     [SerializeField] private BubbleController.Config config;
 
-    private readonly List<BubbleController> activeBubbleControllers = new();
-
-    public bool AreAllBubblesDestroyed => activeBubbleControllers.Count <= 0;
+    private readonly List<BubbleInstance> instances = new();
 
     private IEnumerator Start() 
     {
@@ -32,35 +22,88 @@ public class BubbleSpawner : MonoBehaviour
 
     private IEnumerator SpawnRoutine()
     {
+        bool areAllBubblesDestroyed = true;
         while (true)
         {
             for (int i = 0; i < spawnElements.Count; i++)
             {
-                yield return new WaitForSeconds(spawnElements[i].SpawnDelay);
-                SpawnBubble(spawnElements[i].BubbleController);
+                SpawnElement spawnElement = spawnElements[i];
+                yield return new WaitForSeconds(spawnElement.SpawnDelay);
+                if (spawnElement.CanSpawnWhenActive || areAllBubblesDestroyed)
+                {
+                    BubbleInstance instance = new(spawnElement, config);
+                    instance.SpawnBubble(transform.position);
+                    instance.OnDestroy += () => instances.Remove(instance);
+                    instances.Add(instance);
+                }
             }
-            
-            yield return new WaitUntil(() => AreAllBubblesDestroyed && linkedSpawners.All(x => x.AreAllBubblesDestroyed));
+
+            areAllBubblesDestroyed = AreAllBubblesDestroyed();
         }
     }
 
-    private void DestroyBubble(BubbleController bubble)
+    private bool AreAllBubblesDestroyed()
     {
-        activeBubbleControllers.Remove(bubble);
-        Destroy(bubble.gameObject);
-    }
+        for (int i = 0; i < instances.Count; i++)
+        {
+            if (instances[i].spawnElement.CanSpawnWhenActive) { continue; }
+            if (instances[i].IsActive) { return false; }
+        }
 
-    private void SpawnBubble(BubbleController bubble)
-    {
-        BubbleController spawnedBubble = Instantiate(bubble, transform.position, Quaternion.identity);
-        spawnedBubble.Setup(config);
-        spawnedBubble.OnDestroyed += DestroyBubble;
-        activeBubbleControllers.Add(spawnedBubble);
+        for (int i = 0; i < linkedSpawners.Count; i++)
+        {
+            if (!linkedSpawners[i].AreAllBubblesDestroyed()) { return false; }
+        }
+
+        return true;
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(transform.position, 0.6f);
+    }
+
+    [Serializable]
+    public class SpawnElement
+    {
+        [field: SerializeField] public float SpawnDelay { get; private set; }
+        [field: SerializeField] public BubbleController BubbleController { get; private set; }
+        [field: SerializeField] public bool CanSpawnWhenActive { get; private set; }
+    }
+
+    public class BubbleInstance
+    {
+        public bool IsActive => instance != null;
+        
+        private BubbleController instance;
+
+        public event Action OnDestroy;
+
+        public readonly SpawnElement spawnElement;
+        private readonly BubbleController.Config config;
+
+        public BubbleInstance(SpawnElement spawnElement, BubbleController.Config config)
+        {
+            this.spawnElement = spawnElement;
+            this.config = config;
+        }
+
+        public void SpawnBubble(Vector3 position)
+        {
+            DestroyBubble();
+            instance = Instantiate(spawnElement.BubbleController, position, Quaternion.identity);
+            instance.Setup(config);
+            instance.OnDestroyed += DestroyBubble;
+        }
+
+        private void DestroyBubble()
+        {
+            if (IsActive)
+            {
+                Destroy(instance.gameObject);
+                OnDestroy?.Invoke();   
+            }
+        }
     }
 }
