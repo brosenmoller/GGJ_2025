@@ -19,7 +19,7 @@ public class BubbleController : MonoBehaviour
     [SerializeField] private Color normalColor;
     [SerializeField] private SpriteRenderer spriteHolder;
 
-    public event Action OnDestroyed;
+    public event Action<BubbleController> OnDestroyed;
 
     private Rigidbody2D rigidBody2D;
     private Collider2D bubbleCollider;
@@ -45,7 +45,6 @@ public class BubbleController : MonoBehaviour
         rigidBody2D = GetComponent<Rigidbody2D>();
         bubbleCollider = GetComponent<Collider2D>();
         isDirectionForward = true;
-        OnDestroyed += SpawnBurstParticle;
         UnFreeze();
     }
 
@@ -54,7 +53,7 @@ public class BubbleController : MonoBehaviour
         if (!freezeable) return;
         if (isFrozen)
         {
-            OnDestroyed?.Invoke();
+            Pop();
         } 
         else
         {
@@ -107,7 +106,7 @@ public class BubbleController : MonoBehaviour
             }
             else
             {
-                OnDestroyed?.Invoke();
+                Pop();
             }
         } else if (splineTimeValue < 0)
         {
@@ -129,21 +128,12 @@ public class BubbleController : MonoBehaviour
                 return;
             }
         }
-        OnDestroyed?.Invoke();
-    }
-
-    private void SpawnBurstParticle()
-    {
-        ParticleManager.Instance.PlayParticleAt("BubbleBurst", transform.position);
-    }
-
-    protected virtual void OnDisable()
-    {
-        OnDestroyed -= SpawnBurstParticle;
+        Pop();
     }
 
     public void Pop()
     {
-        OnDestroyed?.Invoke();
+        ParticleManager.Instance.PlayParticleAt("BubbleBurst", transform.position);
+        OnDestroyed?.Invoke(this);
     }
 }

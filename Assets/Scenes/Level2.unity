@@ -1092,9 +1092,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3935401090785514939, guid: 4348bd60fce85b34585d38e82daa4ed4, type: 3}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
+      propertyPath: spawnElements.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: config.<IsSplineLoopingEnabled>k__BackingField
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
+      propertyPath: spawnElements.Array.data[0].<BubbleController>k__BackingField
+      value: 
+      objectReference: {fileID: 3935401090785514939, guid: 4348bd60fce85b34585d38e82daa4ed4, type: 3}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: config.<SplineCurve>k__BackingField.m_Curve.Array.data[0].inSlope
       value: 0
@@ -1453,6 +1461,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
+      propertyPath: spawnElements.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: linkedSpawners.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -1460,6 +1472,14 @@ PrefabInstance:
       propertyPath: 'linkedSpawners.Array.data[0]'
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
+      propertyPath: spawnElements.Array.data[0].<SpawnDelay>k__BackingField
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
+      propertyPath: spawnElements.Array.data[0].<BubbleController>k__BackingField
+      value: 
+      objectReference: {fileID: 1188948113258195141, guid: 757ce2c04bdb3fd4d8284f5f5ad1593d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
