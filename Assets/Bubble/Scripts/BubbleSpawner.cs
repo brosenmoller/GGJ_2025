@@ -42,7 +42,7 @@ public class BubbleSpawner : MonoBehaviour
         }
     }
 
-    private bool AreAllBubblesDestroyed()
+    private bool AreAllBubblesDestroyed(bool recursive = false)
     {
         for (int i = 0; i < instances.Count; i++)
         {
@@ -50,9 +50,11 @@ public class BubbleSpawner : MonoBehaviour
             if (instances[i].IsActive) { return false; }
         }
 
+        if (recursive) { return true; }
+
         for (int i = 0; i < linkedSpawners.Count; i++)
         {
-            if (!linkedSpawners[i].AreAllBubblesDestroyed()) { return false; }
+            if (!linkedSpawners[i].AreAllBubblesDestroyed(true)) { return false; }
         }
 
         return true;
