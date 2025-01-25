@@ -5,8 +5,8 @@ using System.Collections.Generic;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField]
-    private SerializableDictionary<string, AudioClip> AudioDictornary;
-    private Dictionary<string, GameObject> SingleInstanceDictonary;
+    private SerializableDictionary<string, AudioClip> AudioDictornary = new();
+    private Dictionary<string, GameObject> SingleInstanceDictonary = new();
     public static AudioManager Instance { get; private set; }
     public static bool Exists { get { return Instance != null; } }
 
@@ -40,7 +40,7 @@ public class AudioManager : MonoBehaviour
         tempGO.transform.position = pos;
         var source = tempGO.AddComponent<AudioSource>();
         source.clip = clip;
-        source.pitch = Random.Range(0.5f, 1.5f);
+        source.pitch = Random.Range(0.8f, 1.2f);
         source.Play();
         Destroy(tempGO, clip.length);
         return tempGO;
