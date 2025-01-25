@@ -64,7 +64,7 @@ public class BubbleController : MonoBehaviour
 
     private void Freeze()
     {
-        ParticleManager.Instance.PlayParticleAt(ParticleManager.ParticleType.Freeze, transform.position);
+        ParticleManager.Instance.PlayParticleAt("Freeze", transform.position);
         isFrozen = true;
         bubbleCollider.isTrigger = false;
         freezeEndTime = Time.time + freezeTime;
@@ -85,7 +85,7 @@ public class BubbleController : MonoBehaviour
         if (isFrozen) {
             if(Time.time > freezeEndTime - 1 && !spawnedUnfreezeParticle)
             {
-                ParticleManager.Instance.PlayParticleAt(ParticleManager.ParticleType.FreezeEnd, transform.position);
+                ParticleManager.Instance.PlayParticleAt("FreezeEnd", transform.position);
                 spawnedUnfreezeParticle = true;
             }
             if (Time.time > freezeEndTime) {
@@ -134,7 +134,7 @@ public class BubbleController : MonoBehaviour
 
     private void SpawnBurstParticle()
     {
-        ParticleManager.Instance.PlayParticleAt(ParticleManager.ParticleType.BubbleBurst, transform.position);
+        ParticleManager.Instance.PlayParticleAt("BubbleBurst", transform.position);
     }
 
     protected virtual void OnDisable()

@@ -3,9 +3,9 @@ using UnityEngine;
 [RequireComponent(typeof(ParticleSystem))]
 public class ParticlePoolable : MonoBehaviour, IPoolable
 {
-    public bool Active { get; set; }
+    [field: SerializeField] public string Type { get; private set; }
 
-    public ParticleManager.ParticleType ParticleType { get; set; }
+    public bool Active { get; set; }
 
     private ParticleSystem system;
     private float particleEndTime;
@@ -32,6 +32,5 @@ public class ParticlePoolable : MonoBehaviour, IPoolable
             ParticleManager.Instance.ReturnToPool(this);
         }
     }
-
 
 }

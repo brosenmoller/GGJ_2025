@@ -4880,6 +4880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a628882982eb343a9d764c5d2ef104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Type>k__BackingField: Freeze
 --- !u!198 &5383360549126063211
 ParticleSystem:
   m_ObjectHideFlags: 0

@@ -10,12 +10,12 @@ public class BubbleControllerKeepAlive : BubbleController
 
     private void OnEnable()
     {
-        OnDestroyed += spawnPoint.respawn;
+        OnDestroyed += spawnPoint.Respawn;
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
-        OnDestroyed -= spawnPoint.respawn;
+        OnDestroyed -= spawnPoint.Respawn;
     }
 }

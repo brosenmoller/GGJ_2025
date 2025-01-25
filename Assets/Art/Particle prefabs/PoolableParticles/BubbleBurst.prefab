@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6967334981185576765}
   - component: {fileID: 8019207694446187905}
   m_Layer: 0
-  m_Name: Burst
+  m_Name: BubbleBurst
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a628882982eb343a9d764c5d2ef104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Type>k__BackingField: BubbleBurst
 --- !u!198 &6967334981185576765
 ParticleSystem:
   m_ObjectHideFlags: 0

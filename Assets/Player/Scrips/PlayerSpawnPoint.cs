@@ -83,24 +83,25 @@ public class PlayerSpawnPoint : MonoBehaviour
     {
         respawning = false;
         spawnBubble.SetActive(false);
-        ParticleManager.Instance.PlayParticleAt(ParticleManager.ParticleType.BubbleBurst, transform.position);
+        ParticleManager.Instance.PlayParticleAt("BubbleBurst", transform.position);
         rigidBody2D.simulated = true;
         player.enabled = true;
         player.raycastController.collider.enabled = true;
         cinemachineCamera.Target.TrackingTarget = player.transform;
     }
 
-    public void respawn()
+    public void Respawn()
     {
-        if (respawning)
-            return;
+        if (respawning) { return; }
+
         respawning = true;
         BubbleController[] bubbles = FindObjectsByType<BubbleController>(FindObjectsSortMode.None);
         foreach (BubbleController b in bubbles)
         {
             b.Pop();
         }
-        ParticleManager.Instance.PlayeParticleAt("Death", player.transform.position);
+
+        ParticleManager.Instance.PlayParticleAt("Death", player.transform.position);
         BubbleAndMovePlayer(transform.position2D(), respawnCurve);
     }
 }

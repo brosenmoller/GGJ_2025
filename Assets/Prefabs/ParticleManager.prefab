@@ -45,13 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingCount: 2
-  ParticleDictornary:
-    pairs:
-    - key: 0
-      value: {fileID: 9169554937257751649, guid: de44dc27ed071cf4b96444b2280d5477, type: 3}
-    - key: 1
-      value: {fileID: 3257741676145919930, guid: adbe24a98d06a394e9c875e8ae51606d, type: 3}
-    - key: 2
-      value: {fileID: 9178923833240853098, guid: 1e24c93af9777ce43af78428fabed564, type: 3}
-    - key: 3
-      value: {fileID: 3595168450095026314, guid: 7c349250860372044a8f405d03b0554e, type: 3}
+  particlePoolables:
+  - {fileID: 9169554937257751649, guid: de44dc27ed071cf4b96444b2280d5477, type: 3}
+  - {fileID: 3595168450095026314, guid: 7c349250860372044a8f405d03b0554e, type: 3}
+  - {fileID: 3257741676145919930, guid: adbe24a98d06a394e9c875e8ae51606d, type: 3}
+  - {fileID: 9178923833240853098, guid: 1e24c93af9777ce43af78428fabed564, type: 3}
