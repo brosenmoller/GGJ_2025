@@ -37,6 +37,7 @@ public class BubbleController : MonoBehaviour
     private float splineTimeValue;
     private bool isDirectionForward;
     private bool spawnedUnfreezeParticle;
+    private bool isDestroyed;
 
     private Config config;
 
@@ -88,6 +89,8 @@ public class BubbleController : MonoBehaviour
 
     private void Update()
     {
+        if (isDestroyed) { return; }
+
         if (isFrozen) {
             if(Time.time > freezeEndTime - 1 && !spawnedUnfreezeParticle)
             {
@@ -145,7 +148,7 @@ public class BubbleController : MonoBehaviour
 
         if (isBouncy)
         {
-            if( collision.TryGetComponent<PlayerMovement>(out var player))
+            if(collision.TryGetComponent<PlayerMovement>(out var player))
             {
                 player.Bounce(transform.position);
                 return;
@@ -161,5 +164,9 @@ public class BubbleController : MonoBehaviour
         animator.CrossFadeInFixedTime("pop", 0);
         AudioManager.Instance.PlayOneShotRandomPitchFromDictonary("BubbleDeath", transform.position);
         OnDestroyed?.Invoke();
+        bubbleCollider.enabled = false;
+        isDestroyed = true;
+
+        Destroy(gameObject, 0.5f);
     }
 }
