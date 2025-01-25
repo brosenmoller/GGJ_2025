@@ -269,6 +269,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 568702be78e465b48bc2a3767019f1c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &547438597
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 547438599}
+  - component: {fileID: 547438598}
+  m_Layer: 0
+  m_Name: Timescale
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &547438598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547438597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b85784893c44fff4dbc5a4ba6fb2faf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &547438599
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547438597}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 34.17426, y: 0.09852568, z: -0.048598792}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &643526761
 GameObject:
   m_ObjectHideFlags: 0
@@ -1851,7 +1895,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: splineLooping
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: timeBetweeSpawns
@@ -1939,6 +1983,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7139705182455511138, guid: b92471d05a7fc6f4d824a4355fc9bc11, type: 3}
+      propertyPath: fallMultiplier
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7337902992234252119, guid: b92471d05a7fc6f4d824a4355fc9bc11, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2004,3 +2052,4 @@ SceneRoots:
   - {fileID: 2314344738318740106}
   - {fileID: 305638739318561149}
   - {fileID: 5803421294656631265}
+  - {fileID: 547438599}

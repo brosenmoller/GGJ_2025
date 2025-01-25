@@ -11,10 +11,16 @@ public class InputManager : MonoBehaviour
         Instance = this;
         Controls = new();
         Controls.Gameplay.Enable();
+#if UNITY_EDITOR
+        Controls.Debug.Enable();
+#endif
     }
 
     private void OnDisable() 
     {
         Controls.Gameplay.Disable();
+#if UNITY_EDITOR
+        Controls.Debug.Disable();
+#endif
     }
 }
