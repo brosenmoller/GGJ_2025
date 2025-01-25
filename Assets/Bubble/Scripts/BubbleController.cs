@@ -137,7 +137,7 @@ public class BubbleController : MonoBehaviour
         ParticleManager.Instance.PlayParticleAt(ParticleManager.ParticleType.BubbleBurst, transform.position);
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         OnDestroyed -= SpawnBurstParticle;
     }

@@ -7,9 +7,6 @@ public class PlayerCollider : MonoBehaviour
     private PlayerSpawnPoint spawnPoint;
 
     [SerializeField]
-    private ParticleSystem deathParticle;
-
-    [SerializeField]
     private ParticleSystem burstParticle;
 
     [SerializeField]
@@ -34,14 +31,7 @@ public class PlayerCollider : MonoBehaviour
     {
         if (collision.CompareTag("DeathTrigger"))
         {
-            BubbleController[] bubbles = FindObjectsByType<BubbleController>(FindObjectsSortMode.None);
-            foreach(BubbleController b in bubbles)
-            {
-                b.Pop();
-            }
-
-            deathParticle.Play();
-            spawnPoint.BubbleAndMovePlayer(spawnPoint.transform.position2D(), respawnCurve);
+            spawnPoint.respawn();
         } 
         else if (collision.CompareTag("LevelEnd"))
         {
