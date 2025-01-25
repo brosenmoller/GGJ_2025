@@ -30,6 +30,9 @@ public class BubbleController : MonoBehaviour
     private Collider2D bubbleCollider;
     
     private bool isFrozen;
+    [SerializeField]
+    private bool freezeable = true;
+    [SerializeField]
     private bool isBouncy;
 
     private float freezeEndTime;
@@ -53,6 +56,7 @@ public class BubbleController : MonoBehaviour
 
     public void TriggerFreezeAction() 
     {
+        if (!freezeable) return;
         if (isFrozen)
         {
             OnDestroyed?.Invoke();
