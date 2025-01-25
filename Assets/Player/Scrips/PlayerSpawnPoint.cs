@@ -83,6 +83,7 @@ public class PlayerSpawnPoint : MonoBehaviour
     {
         respawning = false;
         spawnBubble.SetActive(false);
+        AudioManager.Instance.PlayOneShotRandomPitchFromDictonary("BubbleDeath", transform.position);
         ParticleManager.Instance.PlayParticleAt("BubbleBurst", transform.position);
         rigidBody2D.simulated = true;
         player.enabled = true;

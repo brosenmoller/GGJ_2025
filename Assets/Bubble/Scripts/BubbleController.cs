@@ -46,6 +46,7 @@ public class BubbleController : MonoBehaviour
         bubbleCollider = GetComponent<Collider2D>();
         isDirectionForward = true;
         UnFreeze();
+        AudioManager.Instance.PlayOneShotRandomPitchFromDictonary("BubbleSpawn", transform.position);
     }
 
     public void TriggerFreezeAction() 
@@ -63,6 +64,7 @@ public class BubbleController : MonoBehaviour
 
     private void Freeze()
     {
+        AudioManager.Instance.PlayOneShotRandomPitchFromDictonary("Freeze", transform.position,true);
         ParticleManager.Instance.PlayParticleAt("Freeze", transform.position);
         isFrozen = true;
         bubbleCollider.isTrigger = false;
@@ -134,6 +136,7 @@ public class BubbleController : MonoBehaviour
     public void Pop()
     {
         ParticleManager.Instance.PlayParticleAt("BubbleBurst", transform.position);
+        AudioManager.Instance.PlayOneShotRandomPitchFromDictonary("BubbleDeath", transform.position);
         OnDestroyed?.Invoke();
     }
 }

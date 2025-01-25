@@ -443,9 +443,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1188948113258195141, guid: 757ce2c04bdb3fd4d8284f5f5ad1593d, type: 3}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
+      propertyPath: spawnElements.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: config.<IsSplineLoopingEnabled>k__BackingField
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
+      propertyPath: spawnElements.Array.data[0].<BubbleController>k__BackingField
+      value: 
+      objectReference: {fileID: 1188948113258195141, guid: 757ce2c04bdb3fd4d8284f5f5ad1593d, type: 3}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: config.<SplineCurve>k__BackingField.m_Curve.Array.data[0].inSlope
       value: 0
@@ -770,8 +778,8 @@ Transform:
   m_GameObject: {fileID: 710437948}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 32.6091, y: 27.8588, z: 0}
-  m_LocalScale: {x: 139.5781, y: 23.5177, z: 1}
+  m_LocalPosition: {x: 32.6091, y: 28.75942, z: 0}
+  m_LocalScale: {x: 139.5781, y: 23, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1210300661}
@@ -887,23 +895,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 121650439949310534, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[1].Position.z
-      value: 7.8680944
+      value: 18.881725
       objectReference: {fileID: 0}
     - target: {fileID: 121650439949310534, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[0].TangentIn.z
-      value: -0.78680944
+      value: -1.8881725
       objectReference: {fileID: 0}
     - target: {fileID: 121650439949310534, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[1].TangentIn.z
-      value: -0.78680944
+      value: -1.8881725
       objectReference: {fileID: 0}
     - target: {fileID: 121650439949310534, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[0].TangentOut.z
-      value: 0.78680944
+      value: 1.8881725
       objectReference: {fileID: 0}
     - target: {fileID: 121650439949310534, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[1].TangentOut.z
-      value: 0.78680944
+      value: 1.8881725
       objectReference: {fileID: 0}
     - target: {fileID: 5124945582827066200, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -911,7 +919,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5124945582827066200, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.986369
+      value: -9
       objectReference: {fileID: 0}
     - target: {fileID: 5124945582827066200, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -954,6 +962,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
+      propertyPath: spawnElements.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: linkedSpawners.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -963,8 +975,12 @@ PrefabInstance:
       objectReference: {fileID: 1418562878}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: config.<IsSplineLoopingEnabled>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
+      propertyPath: spawnElements.Array.data[0].<BubbleController>k__BackingField
+      value: 
+      objectReference: {fileID: 1188948113258195141, guid: 757ce2c04bdb3fd4d8284f5f5ad1593d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1685,9 +1701,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3935401090785514939, guid: 4348bd60fce85b34585d38e82daa4ed4, type: 3}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
+      propertyPath: spawnElements.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: config.<IsSplineLoopingEnabled>k__BackingField
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
+      propertyPath: spawnElements.Array.data[0].<BubbleController>k__BackingField
+      value: 
+      objectReference: {fileID: 3935401090785514939, guid: 4348bd60fce85b34585d38e82daa4ed4, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1975,23 +1999,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 121650439949310534, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[1].Position.z
-      value: 0
+      value: -8.118275
       objectReference: {fileID: 0}
     - target: {fileID: 121650439949310534, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[0].TangentIn.z
-      value: -1.1912606
+      value: -2.003088
       objectReference: {fileID: 0}
     - target: {fileID: 121650439949310534, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[1].TangentIn.z
-      value: -1.1912606
+      value: -2.003088
       objectReference: {fileID: 0}
     - target: {fileID: 121650439949310534, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[0].TangentOut.z
-      value: 1.1912606
+      value: 2.003088
       objectReference: {fileID: 0}
     - target: {fileID: 121650439949310534, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[1].TangentOut.z
-      value: 1.1912606
+      value: 2.003088
       objectReference: {fileID: 0}
     - target: {fileID: 121650439949310534, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[0].Rotation.value.x
@@ -2015,7 +2039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5124945582827066200, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.030881
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 5124945582827066200, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2058,13 +2082,21 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
+      propertyPath: spawnElements.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: config.<SplineDuration>k__BackingField
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
       propertyPath: config.<IsSplineLoopingEnabled>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7292260708266344022, guid: 0d580e243ed3d6e48863a180dfc0c94a, type: 3}
+      propertyPath: spawnElements.Array.data[0].<BubbleController>k__BackingField
+      value: 
+      objectReference: {fileID: 1188948113258195141, guid: 757ce2c04bdb3fd4d8284f5f5ad1593d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
