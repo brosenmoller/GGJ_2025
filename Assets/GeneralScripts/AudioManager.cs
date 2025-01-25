@@ -27,6 +27,11 @@ public class AudioManager : MonoBehaviour
 
     public void PlayOneShotRandomPitchFromDictonary(string key, Vector3 position, bool single = false)
     {
+        if (!AudioDictornary.ContainsKey(key))
+        {
+            Debug.LogError("Trying to start a clip that doesn't exist");
+            return;
+        }
         if (single == true && (SingleInstanceDictonary.ContainsKey(key) && SingleInstanceDictonary[key] != null))
             return;
         GameObject gameObject = PlayOneShot(AudioDictornary[key], position);

@@ -152,3 +152,9 @@ MonoBehaviour:
       value: {fileID: 8300000, guid: b3ad5aeb574cbbe41b0c5988319fef92, type: 3}
     - key: FreezeAbility
       value: {fileID: 8300000, guid: e56d9a84076414947b255ce3b8e53d71, type: 3}
+    - key: Jump
+      value: {fileID: 8300000, guid: c469c241a114b70408ee3887e7d7ae07, type: 3}
+    - key: Death
+      value: {fileID: 8300000, guid: 671283dd3b6242e4ea42f7d98e8a84a2, type: 3}
+    - key: Land
+      value: {fileID: 8300000, guid: cea442e00e81eb440afd3bebe8b351fa, type: 3}
