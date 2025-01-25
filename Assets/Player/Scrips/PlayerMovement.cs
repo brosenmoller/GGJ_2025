@@ -13,14 +13,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float maxJumpVelocity = 18f;
     [SerializeField, Range(0, 1)] float jumpCutOff = 0.5f;
     [SerializeField] private float rigidBodyGravityScale = 4f;
+    [SerializeField] private float maxFallSpeed = -25;
+    [SerializeField] private float fallMultiplier = default;
 
     [Header("GroundDetection")]
     [SerializeField] private float jumpDelay = 0.15f;
     [SerializeField] private float groundDelay = 0.15f;
-    [SerializeField] private Vector3 colliderWidth = new Vector3(0.55f, 0f, 0f);
-    [SerializeField] private Vector3 colliderOffset;
-    [SerializeField] private float groundDistance = 0.55f;
-    [SerializeField] private LayerMask groundLayer;
 
     [Header("JumpSqueeze")]
     [SerializeField] private float xSqueeze = 1.2f;
@@ -41,6 +39,9 @@ public class PlayerMovement : MonoBehaviour
     private float movementX;
 
     private Rigidbody2D rb;
+
+
+ 
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
@@ -117,6 +118,11 @@ public class PlayerMovement : MonoBehaviour
         if (jumpTimer > Time.time && (groundTimer > Time.time || isGrounded)) {
             Jump(currentJumpVelocity);
         }
+        if (rb.linearVelocityY < 0)
+        {
+            rb.AddForce(Vector3.up * Physics.gravity.y * fallMultiplier,ForceMode2D.Impulse);
+        }
+        SpeedClamps();
     }
 
     private void HorizontalMovement() {
@@ -238,11 +244,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void JumpBumb()
     {
-        /*if (rb.linearVelocityY > 0)
-        {*/
+        if (rb.linearVelocityY > 0)
+        {
             JumpBumpLeft();
             JumpBumpRight();
-        //}
+        }
     }
 
     private void JumpBumpLeft()
@@ -288,6 +294,14 @@ public class PlayerMovement : MonoBehaviour
                 return;
             }
         }
+    }
+
+    public void SpeedClamps()
+    {
+        Vector2 v = rb.linearVelocity;
+
+        v.y = Mathf.Clamp(v.y, maxFallSpeed, 18);
+        rb.linearVelocity = v;
     }
 
 }

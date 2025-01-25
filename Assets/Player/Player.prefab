@@ -149,20 +149,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a4b81319fed504099e32046e36c2bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicHorizontalDamping: 0.3
-  horizontalDampingWhenStopping: 0.5
-  horizontalDampingWhenTurning: 0.4
+  basicHorizontalDamping: 0.27069542
+  horizontalDampingWhenStopping: 0.7
+  horizontalDampingWhenTurning: 0.5
   maxJumpVelocity: 18
   jumpCutOff: 0.5
   rigidBodyGravityScale: 4
+  maxFallSpeed: -25
+  fallMultiplier: 0.1
   jumpDelay: 0.15
   groundDelay: 0.15
-  colliderWidth: {x: 0.55, y: 0, z: 0}
-  colliderOffset: {x: 0, y: 0, z: 0}
-  groundDistance: 0.55
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
   xSqueeze: 1.2
   ySqueeze: 0.8
   squeezeDuration: 0.1
