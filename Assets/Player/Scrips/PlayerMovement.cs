@@ -151,7 +151,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         HorizontalMovement();
         if (jumpTimer > Time.time && (groundTimer > Time.time || isGrounded))
         {
@@ -164,7 +163,23 @@ public class PlayerMovement : MonoBehaviour
         StepBump();
         JumpBumb();
         SpeedClamps();
-        animator.SetMoving(Mathf.Abs(rb.linearVelocityX) != 0);
+
+        
+        if(Mathf.Abs(rb.linearVelocityX) > 0.2f)
+        {
+            if(movementX < 0)
+            {
+                animator.SetMoving(!CheckWallLeft());
+            }
+            else
+            {
+                animator.SetMoving(!CheckWallRight());
+            }
+        }
+        else
+        {
+            animator.SetMoving(false);
+        }
     }
 
     private void HorizontalMovement()
@@ -377,6 +392,20 @@ public class PlayerMovement : MonoBehaviour
 
         v.y = Mathf.Clamp(v.y, maxFallSpeed, 18);
         rb.linearVelocity = v;
+    }
+
+
+    private bool CheckWallRight()
+    {
+        float rayLength = RaycastController.skinWidth * 5f;
+        Vector2 rayOrigin = raycastController.raycastOrigins.bottomRight;
+        return Physics2D.Raycast(rayOrigin, Vector2.right, rayLength, raycastController.collisionMask);
+    }
+    private bool CheckWallLeft()
+    {
+        float rayLength = RaycastController.skinWidth * 5f;
+        Vector2 rayOrigin = raycastController.raycastOrigins.bottomLeft;
+        return Physics2D.Raycast(rayOrigin, Vector2.left, rayLength, raycastController.collisionMask);
     }
 
     private bool SameDirection(float a, float b)
