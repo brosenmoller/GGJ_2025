@@ -52,6 +52,10 @@ MonoBehaviour:
   frozenColor: {r: 0, g: 0.18928123, b: 1, a: 1}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   spriteHolder: {fileID: 3536035749961346978}
+  burstParticle: {fileID: 6967334981185576765, guid: de44dc27ed071cf4b96444b2280d5477, type: 3}
+  FreezeParticle: {fileID: 5383360549126063211, guid: adbe24a98d06a394e9c875e8ae51606d, type: 3}
+  FreezeEndParticle: {fileID: 5383360549126063211, guid: 1e24c93af9777ce43af78428fabed564, type: 3}
+  isBouncy: 0
 --- !u!50 &6903916724284022418
 Rigidbody2D:
   serializedVersion: 5

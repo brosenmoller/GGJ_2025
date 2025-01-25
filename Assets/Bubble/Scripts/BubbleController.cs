@@ -19,17 +19,24 @@ public class BubbleController : MonoBehaviour
     [SerializeField] private Color normalColor;
     [SerializeField] private SpriteRenderer spriteHolder;
 
+    [Header("Particles")]
+    [SerializeField] private ParticleSystem burstParticle;
+    [SerializeField] private ParticleSystem FreezeParticle;
+    [SerializeField] private ParticleSystem FreezeEndParticle;
+
     public event Action OnDestroyed;
 
     private Rigidbody2D rigidBody2D;
     private Collider2D bubbleCollider;
     
     private bool isFrozen;
+    private bool isBouncy;
 
     private float freezeEndTime;
 
     private float splineTimeValue;
     private bool isDirectionForward;
+    private bool spawnedUnfreezeParticle;
 
     private Config config;
 
@@ -40,7 +47,7 @@ public class BubbleController : MonoBehaviour
         rigidBody2D = GetComponent<Rigidbody2D>();
         bubbleCollider = GetComponent<Collider2D>();
         isDirectionForward = true;
-
+        OnDestroyed += spawnBurstParticle;
         UnFreeze();
     }
 
@@ -58,11 +65,14 @@ public class BubbleController : MonoBehaviour
 
     private void Freeze()
     {
+        //TODO: Replace with pool instead of instantiate
+        Instantiate(FreezeParticle, transform.position, Quaternion.identity);
         isFrozen = true;
         bubbleCollider.isTrigger = false;
         freezeEndTime = Time.time + freezeTime;
         rigidBody2D.linearVelocity = Vector2.zero;
         spriteHolder.color = frozenColor;
+        spawnedUnfreezeParticle = false;
     }
 
     private void UnFreeze()
@@ -75,6 +85,12 @@ public class BubbleController : MonoBehaviour
     private void Update()
     {
         if (isFrozen) {
+            if(Time.time > freezeEndTime - 1 && !spawnedUnfreezeParticle)
+            {
+                //TODO: Replace with pool instead of instantiate
+                Instantiate(FreezeEndParticle, transform.position, Quaternion.identity);
+                spawnedUnfreezeParticle = true;
+            }
             if (Time.time > freezeEndTime) {
                 UnFreeze();
             }
@@ -108,6 +124,24 @@ public class BubbleController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (isBouncy)
+        {
+            if( collision.TryGetComponent<PlayerMovement>(out var player))
+            {
+                player.Bounce(transform.position);
+                return;
+            }
+        }
         OnDestroyed?.Invoke();
+    }
+
+    //TODO: Replace with pool instead of instantiate
+    private void spawnBurstParticle()
+    {
+        Instantiate(burstParticle, transform.position, Quaternion.identity);
+    }
+    private void OnDisable()
+    {
+        OnDestroyed -= spawnBurstParticle;
     }
 }

@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rigidBodyGravityScale = 4f;
     [SerializeField] private float maxFallSpeed = -25;
     [SerializeField] private float fallMultiplier = default;
+    [SerializeField] private float bounceForce = default;
 
     [Header("GroundDetection")]
     [SerializeField] private float jumpDelay = 0.15f;
@@ -39,10 +40,15 @@ public class PlayerMovement : MonoBehaviour
     private float movementX;
 
     private Rigidbody2D rb;
+    private PlayerParticleManager particleManager;
+
+
+    
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
         raycastController = GetComponent<RaycastController>();
+        particleManager = GetComponentInChildren<PlayerParticleManager>();
     }
 
     private void Start() {
@@ -50,6 +56,8 @@ public class PlayerMovement : MonoBehaviour
         raycastController.CalculateRaySpacing();
 
         isGrounded = GroundCheck();
+
+
         rb.gravityScale = rigidBodyGravityScale;
         currentJumpVelocity = maxJumpVelocity;
         SetupControls();
@@ -78,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (groundTimer < Time.time - groundDelay) {
                 //Posible Land animation
+                particleManager.GROUNDHIT.Play();
             }
         }
         
@@ -97,8 +106,20 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void UpdateMovementDirection(int newMovementX) {
+        FlipSprite(newMovementX);
         movementX = newMovementX;
-        FlipSprite(movementX);
+
+        if(isGrounded && !SameDirection(movementX, rb.linearVelocityX))
+        {
+            if (movementX == 1)
+            {
+                particleManager.DIRECTIONCHANGELEFT.Play();
+            }
+            else if (movementX == -1)
+            {
+                particleManager.DIRECTIONCHANGERIGHT.Play();
+            }
+        }
     }
 
     private void FlipSprite(float movementX) {
@@ -139,6 +160,7 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = new Vector2(horizontalVelocity, rb.linearVelocity.y);
     }
     private void Jump(float jumpVelocity) {
+        particleManager.JUMP.Play();
         JumpBumpLeft();
         JumpBumpRight();
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpVelocity);
@@ -297,6 +319,21 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void Bounce(Vector2 origin)
+    {
+
+        Vector2 direction = (transform.position2D() - origin).normalized;
+        if (Vector2.Dot(Vector2.up, direction) > 0)
+        {
+            rb.AddForce(Vector2.up * bounceForce, ForceMode2D.Impulse);
+        }
+        else
+        {
+            rb.AddForce(Vector2.down * bounceForce, ForceMode2D.Impulse);
+        }
+       
+    }
+
     public void SpeedClamps()
     {
         Vector2 v = rb.linearVelocity;
@@ -304,5 +341,8 @@ public class PlayerMovement : MonoBehaviour
         v.y = Mathf.Clamp(v.y, maxFallSpeed, 18);
         rb.linearVelocity = v;
     }
-
+    private bool SameDirection(float a, float b)
+    {
+        return a * b >= 0.0f;
+    }
 }
