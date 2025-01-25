@@ -104,7 +104,14 @@ public class BubbleController : MonoBehaviour
         {
             if (config.IsSplineLoopingEnabled)
             {
-                isDirectionForward = !isDirectionForward;
+                if (config.Spline.Spline.Closed)
+                {
+                    splineTimeValue -= 1;
+                }
+                else
+                {
+                    isDirectionForward = !isDirectionForward;
+                }
             }
             else
             {
@@ -112,7 +119,14 @@ public class BubbleController : MonoBehaviour
             }
         } else if (splineTimeValue < 0)
         {
-            isDirectionForward = !isDirectionForward;
+            if (config.Spline.Spline.Closed)
+            {
+                splineTimeValue += 1;
+            }
+            else
+            {
+                isDirectionForward = !isDirectionForward;
+            }
         }
 
         float splineDistance = config.SplineCurve.Evaluate(splineTimeValue);
