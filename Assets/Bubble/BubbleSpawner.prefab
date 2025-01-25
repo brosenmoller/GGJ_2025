@@ -158,7 +158,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnDelay: 1
-  bubbleSpeed: 5
   bubbleController: {fileID: 1188948113258195141, guid: 757ce2c04bdb3fd4d8284f5f5ad1593d, type: 3}
   linkedSpawners: []
-  spline: {fileID: 121650439949310534}
+  config:
+    <SplineDuration>k__BackingField: 4
+    <Spline>k__BackingField: {fileID: 121650439949310534}
+    <IsSplineLoopingEnabled>k__BackingField: 0
+    <SplineCurve>k__BackingField:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
