@@ -4,10 +4,15 @@ using UnityEngine.InputSystem;
 public class PlayerFreezeController : MonoBehaviour
 {
     private PlayerAnimator animator;
-    private void Start()
+    private void OnEnable()
     {
         InputManager.Instance.Controls.Gameplay.Freeze.performed += PlayerFreezeAction;
         animator = GetComponent<PlayerAnimator>();
+    }
+
+    private void OnDisable()
+    {
+        InputManager.Instance.Controls.Gameplay.Freeze.performed -= PlayerFreezeAction;
     }
 
     public void PlayerFreezeAction(InputAction.CallbackContext callbackContext)

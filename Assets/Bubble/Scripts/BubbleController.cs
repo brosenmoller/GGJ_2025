@@ -18,6 +18,7 @@ public class BubbleController : MonoBehaviour
     [SerializeField] private Color frozenColor;
     [SerializeField] private Color normalColor;
     [SerializeField] private SpriteRenderer spriteHolder;
+    [SerializeField] private LayerMask popLayer;
 
     public event Action OnDestroyed;
 
@@ -136,6 +137,8 @@ public class BubbleController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!popLayer.Contains(collision.gameObject)) { return; }
+
         if (isBouncy)
         {
             if( collision.TryGetComponent<PlayerMovement>(out var player))
@@ -144,6 +147,7 @@ public class BubbleController : MonoBehaviour
                 return;
             }
         }
+
         Pop();
     }
 
