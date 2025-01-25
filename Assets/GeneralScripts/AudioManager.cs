@@ -7,6 +7,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private SerializableDictionary<string, AudioClip> AudioDictornary = new();
     private Dictionary<string, GameObject> SingleInstanceDictonary = new();
+    [SerializeField]
+    private AudioClipScriptableObject steps;
     public static AudioManager Instance { get; private set; }
     public static bool Exists { get { return Instance != null; } }
 
@@ -47,6 +49,12 @@ public class AudioManager : MonoBehaviour
         Destroy(tempGO, clip.length);
         return tempGO;
     }
+
+    public void Step(Vector3 pos)
+    {
+        PlayOneShot(steps.clips[Random.Range(0, steps.clips.Length)], pos);
+    }
+
 
     private void OnDestroy()
     {

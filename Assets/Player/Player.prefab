@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7023774601202154946}
   - component: {fileID: 8044453474806723471}
   - component: {fileID: 4414919467691560744}
+  - component: {fileID: 4820588463763350274}
   m_Layer: 0
   m_Name: character_stand-Sheet_0
   m_TagString: Untagged
@@ -110,6 +111,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4820588463763350274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1095753486775235018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 872c29fed051cd748a877aac67293d3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4063691686122114473
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3636911041308392631
 Transform:
   m_ObjectHideFlags: 0

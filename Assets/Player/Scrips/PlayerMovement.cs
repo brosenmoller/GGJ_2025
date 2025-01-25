@@ -44,6 +44,14 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerParticleManager particleManager;
 
+    public void HardReset()
+    {
+        jumpTimer = 0;
+        groundTimer = 0;
+        rb.linearVelocity = Vector2.zero;
+        currentJumpVelocity = maxJumpVelocity;
+    }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -58,7 +66,6 @@ public class PlayerMovement : MonoBehaviour
         raycastController.CalculateRaySpacing();
 
         isGrounded = GroundCheck();
-
 
         rb.gravityScale = rigidBodyGravityScale;
         currentJumpVelocity = maxJumpVelocity;
