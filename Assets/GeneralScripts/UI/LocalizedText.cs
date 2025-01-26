@@ -1,28 +1,32 @@
 using TMPro;
 using UnityEngine;
 
-public class LocalizedText : MonoBehaviour
+[RequireComponent(typeof(TextMeshProUGUI))]
+public class LocalizedText : Localized
 {
     [SerializeField] private string englishText;
     [SerializeField] private string koreanText;
 
     private TextMeshProUGUI text;
 
+    public override void OnLanguageChanged(int lanuage)
+    {
+        ApplyLanguage();
+    }
+
     private void Awake()
     {
         text = GetComponent<TextMeshProUGUI>();
-        if (!PlayerPrefs.HasKey(nameof(Language)))
-        {
-            PlayerPrefs.SetInt(nameof(Language), (int)Language.English);
-        }
-
-        Language language = (Language)PlayerPrefs.GetInt(nameof(Language));
-        text.text = language == Language.English ? englishText : koreanText;
     }
 
-    public enum Language
+    private void Start()
     {
-        English = 0,
-        Korean = 1,
+        ApplyLanguage();
+    }
+
+    public void ApplyLanguage()
+    {
+        int language = PlayerPrefs.GetInt(SaveSystem.LANGUAGE_SAVE);
+        text.text = language == SaveSystem.LANGUAGE_ENGLISH ? englishText : koreanText;
     }
 }
