@@ -4,6 +4,8 @@ public static class SaveSystem
 {
     public const string DEATHS_SAVE = "Deaths";
     public const string LOWEST_DEATHS_SAVE = "LowestDeaths";
+    public const string START_TIME = "STATE_TIME";
+    public const string FASTEST_TIME_SAVE = "FASTEST_TIME";
     public const string LANGUAGE_SAVE = "language";
 
     public const int LANGUAGE_ENGLISH = 0;
@@ -23,7 +25,25 @@ public static class SaveSystem
             PlayerPrefs.SetInt(LOWEST_DEATHS_SAVE, int.MaxValue);
         }
 
+        PlayerPrefs.SetFloat(START_TIME, 0);
+
+        if (!PlayerPrefs.HasKey(FASTEST_TIME_SAVE))
+        {
+            PlayerPrefs.SetFloat(FASTEST_TIME_SAVE, float.MaxValue);
+        }
+
         PlayerPrefs.Save();
+    }
+
+    public static void StartTime()
+    {
+        PlayerPrefs.SetFloat(START_TIME, Time.realtimeSinceStartup);
+    }
+
+    public static float EndTime()
+    {
+        float startTime = PlayerPrefs.GetFloat(START_TIME);
+        return Time.realtimeSinceStartup - startTime;
     }
 
     public static void SwitchLanguage()
@@ -46,6 +66,6 @@ public static class SaveSystem
     public static void Reset()
     {
         PlayerPrefs.SetInt(LOWEST_DEATHS_SAVE, int.MaxValue);
-        PlayerPrefs.SetInt(DEATHS_SAVE, 0);
+        PlayerPrefs.SetFloat(FASTEST_TIME_SAVE, float.MaxValue);
     }
 }
