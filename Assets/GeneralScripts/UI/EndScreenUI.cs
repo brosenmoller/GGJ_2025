@@ -72,7 +72,7 @@ public class EndScreenUI : MonoBehaviour
     public void Restart()
     {
         SaveSystem.StartTime();
-        SceneManager.LoadScene(1);
         SaveSystem.Setup();
+        SceneManager.LoadScene(1);
     }
 }
