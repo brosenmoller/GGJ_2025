@@ -49,5 +49,8 @@ TagManager:
   - name: particle
     uniqueID: 1461895371
     locked: 0
+  - name: Forground
+    uniqueID: 467743253
+    locked: 0
   m_RenderingLayers:
   - Default
