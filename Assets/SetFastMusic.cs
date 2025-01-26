@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class SetFastMusic : MonoBehaviour
 {
-    void Start()
+    private void Start()
     {
-        MusicManager.Instance.SwitchToFast();
+        if (MusicManager.Exists) {
+            MusicManager.Instance.SwitchToFast();
+        }
     }
 }
