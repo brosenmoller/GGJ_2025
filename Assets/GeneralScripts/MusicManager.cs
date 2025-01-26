@@ -16,6 +16,11 @@ public class MusicManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if(Instance != null)
+        {
+            Destroy(this);
+            return;
+        }
         Instance = this;
         DontDestroyOnLoad(this);
         source = GetComponent<AudioSource>();
