@@ -17,6 +17,10 @@ public static class SaveSystem
         {
             SetLanguage(LANGUAGE_ENGLISH);
         }
+        else 
+        {
+            SetLanguage(PlayerPrefs.GetInt(LANGUAGE_SAVE));
+        }
 
         PlayerPrefs.SetInt(DEATHS_SAVE, 0);
 

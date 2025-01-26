@@ -930,7 +930,7 @@ GameObject:
   - component: {fileID: 619533743}
   - component: {fileID: 619533742}
   m_Layer: 5
-  m_Name: Uwand
+  m_Name: Yeo Hyun Jung
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -952,8 +952,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 248.7622, y: -2}
-  m_SizeDelta: {x: 283.5244, y: 50}
+  m_AnchoredPosition: {x: 307.11102, y: -2}
+  m_SizeDelta: {x: 400.222, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &619533742
 MonoBehaviour:
@@ -975,10 +975,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Uwand
+  m_text: "Yeo Hyun Jung (\uC815\uC5EC\uD604)"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ea67b885ceed4434aa7f78fc95beccc1, type: 2}
+  m_sharedMaterial: {fileID: 4254077391072612527, guid: ea67b885ceed4434aa7f78fc95beccc1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1327,6 +1327,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewFastestTime
       objectReference: {fileID: 0}
+    - target: {fileID: 3713945489947760424, guid: ec04206e0b9f5274281a01a4e87d7b8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4709270863851250655, guid: ec04206e0b9f5274281a01a4e87d7b8e, type: 3}
       propertyPath: koreanText
       value: "\uC0C8\uB85C\uC6B4 \uAC00\uC7A5 \uBE60\uB978 \uC2DC\uAC04"
@@ -1510,8 +1514,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 248.7622, y: -2}
-  m_SizeDelta: {x: 283.5244, y: 50}
+  m_AnchoredPosition: {x: 260.2172, y: -2}
+  m_SizeDelta: {x: 306.4344, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &986026094
 MonoBehaviour:
@@ -1535,8 +1539,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Ben Rosenm\xF6ller"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ea67b885ceed4434aa7f78fc95beccc1, type: 2}
+  m_sharedMaterial: {fileID: 4254077391072612527, guid: ea67b885ceed4434aa7f78fc95beccc1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1793,8 +1797,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Cas Wellink
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ea67b885ceed4434aa7f78fc95beccc1, type: 2}
+  m_sharedMaterial: {fileID: 4254077391072612527, guid: ea67b885ceed4434aa7f78fc95beccc1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2989,8 +2993,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Isabel Boogers
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ea67b885ceed4434aa7f78fc95beccc1, type: 2}
+  m_sharedMaterial: {fileID: 4254077391072612527, guid: ea67b885ceed4434aa7f78fc95beccc1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -18234,8 +18238,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Mia Vreven
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ea67b885ceed4434aa7f78fc95beccc1, type: 2}
+  m_sharedMaterial: {fileID: 4254077391072612527, guid: ea67b885ceed4434aa7f78fc95beccc1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
