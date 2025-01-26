@@ -602,7 +602,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3309169157435072904, guid: d1b55ec1e8b61484881291d637814aa5, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3309169157435072904, guid: d1b55ec1e8b61484881291d637814aa5, type: 3}
       propertyPath: m_SortingOrder
@@ -687,7 +687,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3309169157435072904, guid: d1b55ec1e8b61484881291d637814aa5, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3309169157435072904, guid: d1b55ec1e8b61484881291d637814aa5, type: 3}
       propertyPath: m_SortingOrder
@@ -805,7 +805,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 467743253
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 12
   m_Sprite: {fileID: 6415046152802774960, guid: 5f34dd13da1a1914dae53805e54de2e6, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -998,7 +998,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3309169157435072904, guid: d1b55ec1e8b61484881291d637814aa5, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3309169157435072904, guid: d1b55ec1e8b61484881291d637814aa5, type: 3}
       propertyPath: m_SortingOrder
@@ -1088,7 +1088,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3309169157435072904, guid: d1b55ec1e8b61484881291d637814aa5, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3309169157435072904, guid: d1b55ec1e8b61484881291d637814aa5, type: 3}
       propertyPath: m_SortingOrder
@@ -1486,7 +1486,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 467743253
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 12
   m_Sprite: {fileID: 6415046152802774960, guid: 5f34dd13da1a1914dae53805e54de2e6, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -20955,7 +20955,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7022636645228954960, guid: 60c1bd4873282ed4ab0b3700d1858f2a, type: 3}
       propertyPath: orthographic size
-      value: 4.34375
+      value: 11.25
       objectReference: {fileID: 0}
     - target: {fileID: 7446916848506559663, guid: 60c1bd4873282ed4ab0b3700d1858f2a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -21607,9 +21607,25 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 959393055492044765, guid: 6fbde1cf03deedf4bb199a2b3d8edc91, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 959393055492044765, guid: 6fbde1cf03deedf4bb199a2b3d8edc91, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.98
+      objectReference: {fileID: 0}
     - target: {fileID: 1317678531814693656, guid: 6fbde1cf03deedf4bb199a2b3d8edc91, type: 3}
       propertyPath: m_Name
       value: Finalbackgroundgamejamzaterdag
+      objectReference: {fileID: 0}
+    - target: {fileID: 2288089442917489784, guid: 6fbde1cf03deedf4bb199a2b3d8edc91, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.1128012
+      objectReference: {fileID: 0}
+    - target: {fileID: 2288089442917489784, guid: 6fbde1cf03deedf4bb199a2b3d8edc91, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.3621
       objectReference: {fileID: 0}
     - target: {fileID: 2464648914034587826, guid: 6fbde1cf03deedf4bb199a2b3d8edc91, type: 3}
       propertyPath: m_IsActive
@@ -21670,6 +21686,14 @@ PrefabInstance:
     - target: {fileID: 9050622075464456550, guid: 6fbde1cf03deedf4bb199a2b3d8edc91, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056507205748743475, guid: 6fbde1cf03deedf4bb199a2b3d8edc91, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2396146
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056507205748743475, guid: 6fbde1cf03deedf4bb199a2b3d8edc91, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.5198
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

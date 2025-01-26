@@ -25,7 +25,7 @@ public class MainMenu : MonoBehaviour
 
         achievementsObject.SetActive(false);
         int lowestDeathCount = PlayerPrefs.GetInt(SaveSystem.LOWEST_DEATHS_SAVE);
-        float fastestTime = PlayerPrefs.GetInt(SaveSystem.FASTEST_TIME_SAVE);
+        float fastestTime = PlayerPrefs.GetFloat(SaveSystem.FASTEST_TIME_SAVE);
 
         lowestDeathValueText.text = lowestDeathCount > 10000 ? " - " : lowestDeathCount.ToString();
         fastestTimeValueText.text = fastestTime > 100000f ? " - " : fastestTime.ToString("0.00");

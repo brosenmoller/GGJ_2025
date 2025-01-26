@@ -45,8 +45,8 @@ public class EndScreenUI : MonoBehaviour
         deathCountValueText.text = deathCount.ToString();
         lowestDeathCountValueText.text = lowestDeathCount.ToString();
 
-        timeValueText.text = time.ToString();
-        fastestTimeValueText.text = fastestTime.ToString();
+        timeValueText.text = time.ToString("0.00");
+        fastestTimeValueText.text = fastestTime.ToString("0.00");
 
         if (hasReachedLowestScore)
         {
@@ -72,7 +72,7 @@ public class EndScreenUI : MonoBehaviour
     public void Restart()
     {
         SaveSystem.StartTime();
-        SceneManager.LoadScene(1);
         SaveSystem.Setup();
+        SceneManager.LoadScene(1);
     }
 }

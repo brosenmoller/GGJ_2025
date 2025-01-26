@@ -76,6 +76,7 @@ public class PlayerSpawnPoint : MonoBehaviour
 
     private void BubblePlayer()
     {
+        Respawning = true;
         player.enabled = false;
         player.raycastController.collider.enabled = false;
         rigidBody2D.linearVelocity = Vector2.zero;

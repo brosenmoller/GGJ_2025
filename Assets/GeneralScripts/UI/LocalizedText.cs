@@ -27,6 +27,10 @@ public class LocalizedText : Localized
     public void ApplyLanguage()
     {
         int language = PlayerPrefs.GetInt(SaveSystem.LANGUAGE_SAVE);
+        if (text == null)
+        {
+            text = GetComponent<TextMeshProUGUI>();
+        }
         text.text = language == SaveSystem.LANGUAGE_ENGLISH ? englishText : koreanText;
     }
 }
