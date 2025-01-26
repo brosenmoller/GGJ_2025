@@ -17,6 +17,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1188948113258195141, guid: 757ce2c04bdb3fd4d8284f5f5ad1593d, type: 3}
+      propertyPath: freezeable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188948113258195141, guid: 757ce2c04bdb3fd4d8284f5f5ad1593d, type: 3}
       propertyPath: normalColor.b
       value: 0
       objectReference: {fileID: 0}
