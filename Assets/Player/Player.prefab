@@ -439,7 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a4b81319fed504099e32046e36c2bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicHorizontalDamping: 0.27069542
+  basicHorizontalDamping: 0.47
   horizontalDampingWhenStopping: 0.7
   horizontalDampingWhenTurning: 0.5
   maxJumpVelocity: 18

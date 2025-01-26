@@ -20907,7 +20907,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7022636645228954960, guid: 60c1bd4873282ed4ab0b3700d1858f2a, type: 3}
       propertyPath: orthographic size
-      value: 8.4375
+      value: 4.34375
       objectReference: {fileID: 0}
     - target: {fileID: 7446916848506559663, guid: 60c1bd4873282ed4ab0b3700d1858f2a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -21625,6 +21625,7 @@ PrefabInstance:
     - {fileID: 2730910069220252314, guid: 6fbde1cf03deedf4bb199a2b3d8edc91, type: 3}
     - {fileID: 2347633930905910948, guid: 6fbde1cf03deedf4bb199a2b3d8edc91, type: 3}
     - {fileID: 8045899244287311603, guid: 6fbde1cf03deedf4bb199a2b3d8edc91, type: 3}
+    - {fileID: 2192212823498221229, guid: 6fbde1cf03deedf4bb199a2b3d8edc91, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fbde1cf03deedf4bb199a2b3d8edc91, type: 3}
@@ -21770,13 +21771,17 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0.9843137
       objectReference: {fileID: 0}
+    - target: {fileID: 3054464866607447987, guid: 697c955f02ded0a45b3f55863409533f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 4029628761423082296, guid: 697c955f02ded0a45b3f55863409533f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.800001
+      value: -14
       objectReference: {fileID: 0}
     - target: {fileID: 4029628761423082296, guid: 697c955f02ded0a45b3f55863409533f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12.11
+      value: -11.3
       objectReference: {fileID: 0}
     - target: {fileID: 4029628761423082296, guid: 697c955f02ded0a45b3f55863409533f, type: 3}
       propertyPath: m_LocalPosition.z
