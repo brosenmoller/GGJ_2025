@@ -78,6 +78,8 @@ public class Dialogue : MonoBehaviour, IPointerClickHandler
             }
             yield return new WaitForSeconds(textSpeed);
         }
+        yield return new WaitForSeconds(1.5f);
+        Next();
     }
 
 
