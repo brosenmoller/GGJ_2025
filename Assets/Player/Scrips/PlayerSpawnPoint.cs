@@ -15,11 +15,12 @@ public class PlayerSpawnPoint : MonoBehaviour
     [SerializeField]
     private GameObject spawnBubble;
 
+    public bool Respawning { get; private set; }
+
     private PlayerMovement player;
     private Rigidbody2D rigidBody2D;
     private CinemachineCamera cinemachineCamera;
     private PlayerFreezeController freezeController;
-    private bool respawning;
 
     private void Awake()
     {
@@ -32,6 +33,7 @@ public class PlayerSpawnPoint : MonoBehaviour
     private IEnumerator Start()
     {
         yield return ParticleManager.WaitUntillExists;
+        Respawning = true;
         BubbleAndMovePlayer(transform.position2D(), spawnCurve);
     }
 
@@ -84,7 +86,7 @@ public class PlayerSpawnPoint : MonoBehaviour
 
     private void UnBubblePlayer()
     {
-        respawning = false;
+        Respawning = false;
         freezeController.enabled = true;
         spawnBubble.SetActive(false);
         AudioManager.Instance.PlayOneShotRandomPitchFromDictonary("BubbleDeath", transform.position);
@@ -98,20 +100,21 @@ public class PlayerSpawnPoint : MonoBehaviour
 
     public void Respawn()
     {
-        if (respawning) { return; }
+        if (Respawning) { return; }
+        Respawning = true;
 
         PlayerPrefs.SetInt(SaveSystem.DEATHS_SAVE, PlayerPrefs.GetInt(SaveSystem.DEATHS_SAVE) + 1);
         PlayerPrefs.Save();
 
         AudioManager.Instance.PlayOneShotRandomPitchFromDictonary("Death", transform.position);
-        respawning = true;
+        ParticleManager.Instance.PlayParticleAt("Death", player.transform.position);
+
         BubbleController[] bubbles = FindObjectsByType<BubbleController>(FindObjectsSortMode.None);
         foreach (BubbleController b in bubbles)
         {
             b.Pop();
         }
 
-        ParticleManager.Instance.PlayParticleAt("Death", player.transform.position);
         StartCoroutine(DelayedBubble());
     }
 

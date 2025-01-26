@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Splines;
 
 public class BubbleSpawner : MonoBehaviour 
 {
@@ -18,6 +16,13 @@ public class BubbleSpawner : MonoBehaviour
 
     private readonly List<BubbleInstance> instances = new();
     private bool isFirstSpawn;
+
+    private PlayerSpawnPoint spawnPoint;
+
+    private void Awake()
+    {
+        spawnPoint = FindFirstObjectByType<PlayerSpawnPoint>();
+    }
 
     private void OnEnable()
     {
@@ -43,7 +48,9 @@ public class BubbleSpawner : MonoBehaviour
                 float delay = spawnElement.SpawnDelay;
                 if (isFirstSpawn && useInitialSpawnDelay) { delay = initialSpawnDelay; }
 
+                yield return new WaitUntil(() => !spawnPoint.Respawning);
                 yield return new WaitForSeconds(delay);
+                yield return new WaitUntil(() => !spawnPoint.Respawning);
 
                 if (spawnElement.CanSpawnWhenActive || areAllBubblesDestroyed)
                 {
