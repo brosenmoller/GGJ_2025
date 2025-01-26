@@ -194,7 +194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8588190781115162029, guid: ec04206e0b9f5274281a01a4e87d7b8e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 121
+      value: 206
       objectReference: {fileID: 0}
     - target: {fileID: 8588190781115162029, guid: ec04206e0b9f5274281a01a4e87d7b8e, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -236,7 +236,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4709270863851250655, guid: ec04206e0b9f5274281a01a4e87d7b8e, type: 3}
       propertyPath: koreanText
-      value: "\uC810\uD504 -"
+      value: "\uAC78\uC5B4\uC694 -"
       objectReference: {fileID: 0}
     - target: {fileID: 4709270863851250655, guid: ec04206e0b9f5274281a01a4e87d7b8e, type: 3}
       propertyPath: englishText
@@ -245,6 +245,10 @@ PrefabInstance:
     - target: {fileID: 8302228170620618374, guid: ec04206e0b9f5274281a01a4e87d7b8e, type: 3}
       propertyPath: m_text
       value: "Walk - \n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8302228170620618374, guid: ec04206e0b9f5274281a01a4e87d7b8e, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8588190781115162029, guid: ec04206e0b9f5274281a01a4e87d7b8e, type: 3}
       propertyPath: m_Pivot.x
@@ -308,7 +312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8588190781115162029, guid: ec04206e0b9f5274281a01a4e87d7b8e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -825
+      value: -889
       objectReference: {fileID: 0}
     - target: {fileID: 8588190781115162029, guid: ec04206e0b9f5274281a01a4e87d7b8e, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -431,7 +435,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8588190781115162029, guid: ec04206e0b9f5274281a01a4e87d7b8e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 121
+      value: 207
       objectReference: {fileID: 0}
     - target: {fileID: 8588190781115162029, guid: ec04206e0b9f5274281a01a4e87d7b8e, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -482,6 +486,10 @@ PrefabInstance:
     - target: {fileID: 8302228170620618374, guid: ec04206e0b9f5274281a01a4e87d7b8e, type: 3}
       propertyPath: m_text
       value: "Jump - \n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8302228170620618374, guid: ec04206e0b9f5274281a01a4e87d7b8e, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8588190781115162029, guid: ec04206e0b9f5274281a01a4e87d7b8e, type: 3}
       propertyPath: m_Pivot.x
@@ -545,7 +553,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8588190781115162029, guid: ec04206e0b9f5274281a01a4e87d7b8e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -825
+      value: -889
       objectReference: {fileID: 0}
     - target: {fileID: 8588190781115162029, guid: ec04206e0b9f5274281a01a4e87d7b8e, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -666,7 +674,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8588190781115162029, guid: ec04206e0b9f5274281a01a4e87d7b8e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 150
+      value: 208
       objectReference: {fileID: 0}
     - target: {fileID: 8588190781115162029, guid: ec04206e0b9f5274281a01a4e87d7b8e, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -708,7 +716,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4709270863851250655, guid: ec04206e0b9f5274281a01a4e87d7b8e, type: 3}
       propertyPath: koreanText
-      value: "\uC810\uD504 -"
+      value: "\uC5BC\uC5B4\uC694 -"
       objectReference: {fileID: 0}
     - target: {fileID: 4709270863851250655, guid: ec04206e0b9f5274281a01a4e87d7b8e, type: 3}
       propertyPath: englishText
@@ -717,6 +725,10 @@ PrefabInstance:
     - target: {fileID: 8302228170620618374, guid: ec04206e0b9f5274281a01a4e87d7b8e, type: 3}
       propertyPath: m_text
       value: "Freeze - \n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8302228170620618374, guid: ec04206e0b9f5274281a01a4e87d7b8e, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8588190781115162029, guid: ec04206e0b9f5274281a01a4e87d7b8e, type: 3}
       propertyPath: m_Pivot.x
@@ -780,7 +792,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8588190781115162029, guid: ec04206e0b9f5274281a01a4e87d7b8e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -825
+      value: -889
       objectReference: {fileID: 0}
     - target: {fileID: 8588190781115162029, guid: ec04206e0b9f5274281a01a4e87d7b8e, type: 3}
       propertyPath: m_AnchoredPosition.y
