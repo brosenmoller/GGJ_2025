@@ -40,7 +40,11 @@ public class Dialogue : MonoBehaviour, IPointerClickHandler
     {
         text.text = "";
         source = GetComponent<AudioSource>();
-        lines = linesK;
+        if (PlayerPrefs.GetInt(SaveSystem.LANGUAGE_SAVE) == SaveSystem.LANGUAGE_KOREAN)
+        {
+            lines = linesK;
+        }
+        
         startDialogue();
     }
 
