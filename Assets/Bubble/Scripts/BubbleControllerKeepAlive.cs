@@ -13,6 +13,7 @@ public class BubbleControllerKeepAlive : BubbleController
 
     private void KillPlayer()
     {
+        ParticleManager.Instance.PlayParticleAt("DeathWave", transform.position);
         spawnPoint.Respawn();
     }
 }
