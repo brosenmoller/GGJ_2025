@@ -27265,6 +27265,10 @@ PrefabInstance:
       propertyPath: 'lines.Array.data[0]'
       value: oh no
       objectReference: {fileID: 0}
+    - target: {fileID: 604746487531397869, guid: e73efd9318e7cb54ea04e5efc4b91d35, type: 3}
+      propertyPath: 'linesK.Array.data[0]'
+      value: "\uC624, \uC548 \uB3FC"
+      objectReference: {fileID: 0}
     - target: {fileID: 1810758434605967622, guid: e73efd9318e7cb54ea04e5efc4b91d35, type: 3}
       propertyPath: m_Name
       value: DialogBox
