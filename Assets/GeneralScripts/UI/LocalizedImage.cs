@@ -1,22 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Image))]
 public class LocalizedImage : Localized
 {
-    [SerializeField] private Sprite englishSprite;
-    [SerializeField] private Sprite koreanSprite;
-
-    private Image image;
+    [SerializeField] private Image englishImage;
+    [SerializeField] private Image koreanImage;
 
     public override void OnLanguageChanged(int lanuage)
     {
         ApplyLanguage();
-    }
-
-    private void Awake()
-    {
-        image = GetComponent<Image>();
     }
 
     private void Start()
@@ -27,6 +19,15 @@ public class LocalizedImage : Localized
     public void ApplyLanguage()
     {
         int language = PlayerPrefs.GetInt(SaveSystem.LANGUAGE_SAVE);
-        image.sprite = language == SaveSystem.LANGUAGE_ENGLISH ? englishSprite : koreanSprite;
+        if (language == SaveSystem.LANGUAGE_KOREAN)
+        {
+            koreanImage.enabled = true;
+            englishImage.enabled = false;
+        }
+        else
+        {
+            englishImage.enabled = true;
+            koreanImage.enabled = false;
+        }
     }
 }
